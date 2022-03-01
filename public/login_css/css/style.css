@@ -8223,6 +8223,7 @@ h1, h2, h3, h4, h5,
   color: rgba(255, 255, 255, 0.9); }
 
 .form-control {
+  
   background: transparent;
   border: none;
   height: 50px;
@@ -8234,12 +8235,14 @@ h1, h2, h3, h4, h5,
   padding-right: 20px;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
-  transition: 0.3s; }
+  transition: 0.3s; 
+  border-color: rgba(255, 255, 255, 0.4);}
   @media (prefers-reduced-motion: reduce) {
     .form-control {
       -webkit-transition: none;
       -o-transition: none;
-      transition: none; } }
+      transition: none; 
+      border-color: rgba(255, 255, 255, 0.4);} }
   .form-control::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
     color: rgba(255, 255, 255, 0.8) !important; }
