@@ -15,7 +15,7 @@
               <form method="POST" action="{{ route('login') }}"  aria-label="{{ __('Login') }}" onsubmit='show()' >
                 @csrf
                   <div class="form-group">
-                      <input id="email" autocomplete="off" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus  placeholder="Email">
+                      <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus  placeholder="Email">
                   </div>
             <div class="form-group">
               <input id="password-field" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required >
