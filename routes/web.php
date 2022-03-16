@@ -14,8 +14,23 @@ Auth::routes();
 Route::group( ['middleware' => 'auth'], function()
 {
 Route::get('/', 'HomeController@index');
-
-
-
 Route::get('/home', 'HomeController@index');
+
+
+
+//Category
+Route::get('category','CategoryController@categories');
+Route::post('new-category','CategoryController@newCategory');
+Route::post('deactivate-category','CategoryController@deactivateCategory');
+Route::post('activate-category','CategoryController@activateCategory');
+
+
+
+//Employees API
+Route::get('employees','EmployeeController@employees');
+
+
+//Assets
+Route::get('assets-inventory','AssetController@assets');
+Route::post('new-inventory','AssetController@newAssets');
 });

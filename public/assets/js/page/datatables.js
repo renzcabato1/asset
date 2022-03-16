@@ -40,7 +40,7 @@ $("#table-2").dataTable({
   order: [[1, "asc"]] //column indexes is zero based
 
 });
-$('#save-stage').DataTable({
+$('#employees-table').DataTable({
   "scrollX": true,
   stateSave: true
 });

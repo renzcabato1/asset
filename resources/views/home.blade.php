@@ -185,4 +185,5 @@
     </section>
   </div>
   
+  <script src="{{ asset('assets/bundles/apexcharts/apexcharts.min.js') }}"></script>
 @endsection

@@ -8265,7 +8265,8 @@ h1, h2, h3, h4, h5,
     border-color: rgba(255, 255, 255, 0.4); }
 
 textarea.form-control {
-  height: inherit !important; }
+  height: inherit !important; 
+}
 
 .checkbox-wrap {
   display: block;
