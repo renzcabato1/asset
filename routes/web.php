@@ -33,4 +33,9 @@ Route::get('employees','EmployeeController@employees');
 //Assets
 Route::get('assets-inventory','AssetController@assets');
 Route::post('new-inventory','AssetController@newAssets');
+Route::get('available-assets','AssetController@availableAssets');
+
+
+//Request
+Route::get('requests','RequestController@viewRequests');
 });

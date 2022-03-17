@@ -41,7 +41,7 @@
                                 <option value=''>Select employee</option>
                                 @foreach($employees as $employee)
                                     @if($employee->emp_status == "Active")
-                                        <option value='{{$employee->badgeno}}'>{{$employee->lastname}}, {{$employee->firstname}} {{$employee->middlename}}</option>\
+                                        <option value='{{$employee->badgeno}}'>{{$employee->lastname}}, {{$employee->firstname}} {{$employee->middlename}}</option>
                                     @endif
                                 @endforeach
                             </select>
@@ -52,7 +52,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-12 col-md-8 col-lg-8">
+            <div class="col-8 col-md-8 col-lg-8">
                 <div class="card">
                     <div class="card-header">
                       <h4>Inventories </h4>
@@ -73,7 +73,18 @@
                             </tr>
                           </thead>
                           <tbody>
-                           
+                            @foreach($inventories as $inventory)
+                              <tr>
+                                <td>{{$inventory->category->code}}-{{str_pad($inventory->equipment_code, 5, '0', STR_PAD_LEFT)}}</td>
+                                <td>{{$inventory->category->category_name}}</td>
+                                <td>{{$inventory->brand}}</td>
+                                <td>{{$inventory->model}}</td>
+                                <td>{{$inventory->serial_number}}</td>
+                                <td>{!! nl2br(e($inventory->description)) !!}</td>
+                                <td>{{$inventory->status}}</td>
+                                <td></td>
+                              </tr>
+                            @endforeach
                           </tbody>
                         </table>
                       </div>
@@ -88,6 +99,6 @@
         document.getElementById(fieldId).style.height = document.getElementById(fieldId).scrollHeight+'px';
     }
     setHeight('description');
-    </script>
+</script>
 @endsection
 

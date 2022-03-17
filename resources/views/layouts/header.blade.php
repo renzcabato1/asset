@@ -112,6 +112,18 @@
               <li class="dropdown  @if($header == "Dashboard") active @endif">
                 <a href="{{ url('/') }}" class="nav-link" onclick='show();'><i data-feather="monitor"></i><span>Dashboard</span></a>
               </li>
+              <li class="dropdown  @if($header == "Requests") active @endif">
+                <a href="{{ url('/requests') }}" class="nav-link" onclick='show();'><i data-feather="file-plus"></i><span>Requests</span></a>
+              </li>
+              <li class="dropdown  @if($header == "Available Assets") active @endif">
+                <a href="{{ url('/available-assets') }}" class="nav-link" onclick='show();'><i data-feather="check-square"></i><span>Available Assets</span></a>
+              </li>
+              <li class="dropdown  @if($header == "For Repair") active @endif">
+                <a href="{{ url('/for-repair') }}" class="nav-link" onclick='show();'><i data-feather="settings"></i><span>For Repair</span></a>
+              </li>
+              <li class="dropdown  @if($header == "For Maintenance") active @endif">
+                <a href="{{ url('/for-maintenance') }}" class="nav-link" onclick='show();'><i data-feather="share-2"></i><span>For Maintenance</span></a>
+              </li>
               <li class="menu-header">Settings</li>
               <li class="dropdown @if($header == "Category") active @endif">
                 <a href="{{ url('/category') }}" class="nav-link" onclick='show();'><i data-feather="list"></i><span>Categories</span></a>

@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
+use App\EmployeeInventories;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -9,15 +11,42 @@ class EmployeeController extends Controller
     //
     public function employees()
     {
-        $response = file_get_contents('http://203.177.143.61:8080/HRAPI/public/get-employees-all');
-        $employees = json_decode($response);
+        $employeeInventories = EmployeeInventories::with('inventoryData')->get();
+
+        $client = new Client([
+            'base_uri' => 'http://203.177.143.61:8080/HRAPI/public/',
+            'cookies' => true,
+            ]);
+
+        $data = $client->request('POST', 'oauth/token', [
+            'json' => [
+                'username' => 'rccabato@premiummegastructures.com',
+                'password' => 'P@ssw0rd',
+                'grant_type' => 'password',
+                'client_id' => '2',
+                'client_secret' => 'rVI1kVh07yb4TBw8JiY8J32rmDniEQNQayf3sEyO',
+                ]
+        ]);
+
+        $response = json_decode((string) $data->getBody());
+        $key = $response->access_token;
+
+        $dataEmployee = $client->request('get', 'employees', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $key,
+                    'Accept' => 'application/json'
+                ],
+            ]);
+        $responseEmployee = json_decode((string) $dataEmployee->getBody());
+        $employees = $responseEmployee->data;
        
         return view('employees',
         
         array(
         'subheader' => '',
         'header' => "Employees",
-        'employees' => $employees
+        'employees' => $employees,
+        'employeeInventories' => $employeeInventories
         )
     );
     }

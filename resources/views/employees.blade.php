@@ -21,6 +21,7 @@
                               <th>Emplooyee Type</th>
                               <th>Approver</th>
                               <th>Status</th>
+                              <th>Accountability</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -33,6 +34,10 @@
                                     <td>{{$employee->emp_type}}</td>
                                     <td>@if($employee->approver_info) {{$employee->approver_info->lastname}}, {{$employee->approver_info->firstname}}@endif</td>
                                     <td>{{$employee->emp_status}}</td>
+                                    <td>
+                                      <a href="#" onclick='viewAccountabilities({{$employee->badgeno}});' title='View Accountabilities' class="btn btn-icon btn-primary" data-toggle="modal" data-target="#viewAccountability"><i class="far fa-eye"></i></a>
+                                      {{-- <a href="#" class="btn btn-icon btn-success"><i class="fas fa-print"></i></a> --}}
+                                    </td>
                                 </tr>
                             @endforeach
                           </tbody>
@@ -44,5 +49,15 @@
         </div>
     </section>
 </div>
+@include('view_accountabilities');
+<script>
+    var employeeInventories = {!! json_encode($employeeInventories->toArray()) !!};
+    function viewAccountabilities(Data)
+    {
+        console.log(employeeInventories.length);
+
+        
+    }
+</script>
 @endsection
 
