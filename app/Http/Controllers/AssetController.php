@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Inventory;
 use App\Category;
+use PDF;
 use App\EmployeeInventories;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
@@ -43,7 +44,6 @@ class AssetController extends Controller
         $responseEmployee = json_decode((string) $dataEmployee->getBody());
         $employees = $responseEmployee->data;
         return view('inventories',
-        
         array(
             'subheader' => '',
             'header' => "Assets",
@@ -94,7 +94,6 @@ class AssetController extends Controller
         );
 
     }
-
     public function newAssets(Request $request)
     {
 
@@ -124,8 +123,16 @@ class AssetController extends Controller
         $invetory->model = $request->model;
         $invetory->serial_number = $request->serial_number;
         $invetory->description = $request->description;
-        $invetory->status = "Active";
-
+        
+        if($request->employee)
+        {
+            $invetory->status = "Active";
+        }
+        else
+        {
+            $invetory->status = "Deployed";
+        }
+        $invetory->save();
         if($request->employee)
         {
             $employeeInventory = new EmployeeInventories;
@@ -133,12 +140,43 @@ class AssetController extends Controller
             $employeeInventory->emp_code = $request->employee;
             $employeeInventory->status = "Active";
             $employeeInventory->date_assigned = date('Y-m-d');
+            $employeeInventory->assigned_by = auth()->user()->id;
             $employeeInventory->save();
         }
-        $invetory->save();
+      
         $request->session()->flash('status','Successfully Created');
         return back();
 
+    }
+    public function assignAssets(Request $request)
+    {
+
+        foreach($request->asset as $asset)
+        {
+            $data = Inventory::where('id',$asset)->first();
+            $data->status = "Deployed";
+            $data->save();
+
+            $employeeInventory = new EmployeeInventories;
+            $employeeInventory->inventory_id = $asset;
+            $employeeInventory->emp_code = $request->employee;
+            $employeeInventory->status = "Active";
+            $employeeInventory->date_assigned = date('Y-m-d');
+            $employeeInventory->assigned_by = auth()->user()->id;
+            $employeeInventory->save();
+        }
+
+        
+        $request->session()->flash('status','Successfully Assigned');
+        return back();
+    }
+    public function viewAccountabilityPdf()
+    {
+        $pdf = PDF::loadView('asset_pdf',array(
+         
+            
+        ));
+        return $pdf->stream('accountability.pdf');
     }
     
 }

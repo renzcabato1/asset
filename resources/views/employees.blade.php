@@ -36,6 +36,8 @@
                                     <td>{{$employee->emp_status}}</td>
                                     <td>
                                       <a href="#" onclick='viewAccountabilities({{$employee->badgeno}});' title='View Accountabilities' class="btn btn-icon btn-primary" data-toggle="modal" data-target="#viewAccountability"><i class="far fa-eye"></i></a>
+                                      <a href="#" title='Generate QR Code' onclick="qrGenerateData('{{$employee->badgeno}}');" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#generateQrCode{{$employee->badgeno}}"><i class="fas fa-qrcode"></i></a>
+                                      
                                       {{-- <a href="#" class="btn btn-icon btn-success"><i class="fas fa-print"></i></a> --}}
                                     </td>
                                 </tr>
@@ -49,14 +51,33 @@
         </div>
     </section>
 </div>
+@foreach($employees as $employee)
+  @include('generateQrCode');
+@endforeach
 @include('view_accountabilities');
 <script>
     var employeeInventories = {!! json_encode($employeeInventories->toArray()) !!};
     function viewAccountabilities(Data)
     {
-        console.log(employeeInventories.length);
-
         
+        for(var i=0;i<employeeInventories.length;i++)
+        {
+          if(Data == employeeInventories[i].emp_code)
+          {
+            var tableTd = "<tr>";
+                tableTd += "<td>"+employeeInventories[i].inventory_data.id+"</td>";
+                tableTd += "<td>"+employeeInventories[i].inventory_data.category_id+"</td>";
+                tableTd += "<td>"+employeeInventories[i].inventory_data.brand+"</td>";
+                tableTd += "<td>"+employeeInventories[i].inventory_data.model+"</td>";
+                tableTd += "<td>"+employeeInventories[i].inventory_data.serial_number+"</td>";
+                tableTd += "<td>"+employeeInventories[i].inventory_data.description+"</td>";
+                tableTd += "</tr>";
+
+            $("#AccountabilitiesData" ).append(tableTd);
+            console.log(employeeInventories[i].inventory_data);
+
+          }
+        }
     }
 </script>
 @endsection

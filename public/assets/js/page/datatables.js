@@ -44,6 +44,10 @@ $('#employees-table').DataTable({
   "scrollX": true,
   stateSave: true
 });
+$('#accountability-table').DataTable({
+  "scrollX": true,
+  stateSave: true
+});
 $('#tableExport').DataTable({
   dom: 'Bfrtip',
   buttons: [

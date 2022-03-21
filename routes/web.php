@@ -34,8 +34,13 @@ Route::get('employees','EmployeeController@employees');
 Route::get('assets-inventory','AssetController@assets');
 Route::post('new-inventory','AssetController@newAssets');
 Route::get('available-assets','AssetController@availableAssets');
+Route::post('assign-asset','AssetController@assignAssets');
 
 
 //Request
 Route::get('requests','RequestController@viewRequests');
+
+
+//PDF
+Route::get('accountabilityPDF','AssetController@viewAccountabilityPdf');
 });

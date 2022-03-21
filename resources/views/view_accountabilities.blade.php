@@ -8,15 +8,15 @@
             </button>
             </div>
             <div class="modal-body">
-                <table class="table" >
+                <table class="table table-hover"  style="width:100%;">
                     <thead>
                         <tr>
-                        <th scope="col">Code</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">Serial Number</th>
-                        <th scope="col">Description</th>
+                            <th >Code</th>
+                            <th >Category</th>
+                            <th>Brand</th>
+                            <th >Model</th>
+                            <th >Serial Number</th>
+                            <th >Description</th>
                         </tr>
                     </thead>
                     <tbody id='AccountabilitiesData'>

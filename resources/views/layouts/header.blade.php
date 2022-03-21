@@ -59,6 +59,14 @@
     {
       text-align: left;
     }
+    #accountability-table_filter
+    {
+      text-align: right;
+    }
+    #accountability-table_filter label
+    {
+      text-align: left;
+    }
 </style>
 </head>
 

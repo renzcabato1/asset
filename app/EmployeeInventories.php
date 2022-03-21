@@ -9,6 +9,6 @@ class EmployeeInventories extends Model
     //
     public function inventoryData()
     {
-        return $this->belongsTo(Inventory::class);
+        return $this->belongsTo(Inventory::class,'inventory_id','id');
     }
 }

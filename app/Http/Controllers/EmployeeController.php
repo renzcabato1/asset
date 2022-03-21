@@ -12,7 +12,7 @@ class EmployeeController extends Controller
     public function employees()
     {
         $employeeInventories = EmployeeInventories::with('inventoryData')->get();
-
+        // dd($employeeInventories);
         $client = new Client([
             'base_uri' => 'http://203.177.143.61:8080/HRAPI/public/',
             'cookies' => true,
