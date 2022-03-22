@@ -36,6 +36,8 @@
                             <textarea onkeyup="setHeight('description');" style="height: 78px;" onkeydown="setHeight('description');" id='description' name='description' class="form-control" placeholder="Description" required>{{ old('description') }}</textarea>
                             <label>Date Purchased</label>
                             <input type="date" name='date_purchased' max='{{date('Y-m-d')}}' class="form-control mb-2 mr-sm-2" value="{{ old('date_purchased') }}" placeholder="Date Purchased" required>
+                            <label>Amount</label>
+                            <input type="number" name='amount' max='{{date('Y-m-d')}}' class="form-control mb-2 mr-sm-2" value="{{ old('amount') }}" step='0.01' min='0.01' placeholder="Amount" >
                             <label>Employee Assigned(optional)</label>
                             <select class="form-control select2" name='employee' style='width:100%' >
                                 <option value=''>Select employee</option>
@@ -95,10 +97,12 @@
     </section>
 </div>
 <script type="text/javascript">
-    function setHeight(fieldId){
-        document.getElementById(fieldId).style.height = document.getElementById(fieldId).scrollHeight+'px';
-    }
     setHeight('description');
+    function setHeight(fieldId)
+    {
+        document.getElementById(fieldId).style.height = document.getElementById(fieldId).scrollHeight+'px';
+       
+    }
 </script>
 @endsection
 

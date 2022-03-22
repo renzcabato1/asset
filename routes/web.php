@@ -35,12 +35,25 @@ Route::get('assets-inventory','AssetController@assets');
 Route::post('new-inventory','AssetController@newAssets');
 Route::get('available-assets','AssetController@availableAssets');
 Route::post('assign-asset','AssetController@assignAssets');
-
+Route::get('accountabilities','AssetController@accountabilities');
+Route::get('deployed-assets','AssetController@deployedAssets');
+Route::get('transactions','AssetController@transactions');
+Route::post('return-item','AssetController@returnItem');
+Route::post('generate-data','AssetController@generateData');
 
 //Request
 Route::get('requests','RequestController@viewRequests');
 
 
 //PDF
-Route::get('accountabilityPDF','AssetController@viewAccountabilityPdf');
+Route::get('accountabilityPDF/{id}','AssetController@viewAccountabilityPdf');
+
+//for Repair
+Route::get('for-repair','AssetController@for_repair');
+
+//MANUAL
+
+
+
+
 });

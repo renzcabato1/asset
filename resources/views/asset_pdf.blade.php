@@ -61,27 +61,27 @@
         </tr>
         <tr class='content'>
             <td width='60%' >
-                NAME : 
+                NAME : {{$transaction->name}}
                
             </td>
             <td width='30%'>
-                DATE :   {{date('F d,Y')}} 
+                DATE :   {{date('M d, Y',strtotime($transaction->created_at))}}
             </td>
         </tr>
         <tr   class='content'>
             <td >
-                POSITION : 
+                POSITION : {{$transaction->position}}
             </td>
             <td >
-                TRANS CODE :
+                TRANS CODE : TR-{{str_pad($transaction->id, 5, '0', STR_PAD_LEFT)}}
             </td>
         </tr>
         <tr  class='content' >
             <td >
-                DEPARTMENT : 
+                DEPARTMENT : {{$transaction->department}}
             </td>
             <td >
-                ASSET CODE :
+                ASSET CODE : {{$transaction->asset_code}}
             </td>
         </tr>
         <tr  class='content' align='center' style='padding-top:10px;'>
@@ -94,22 +94,41 @@
     </table>
     <table width="100%" cellspacing="0" border='1' >
         <tr align='center'>
-            <td>
+            <th>
                 <b>CATEGORY</b>
-            </td>
-            <td>
+            </th>
+            <th>
                 <b>EQUIPMENT CODE</b>
-            </td>
-            <td>
+            </th>
+            <th>
                 <b>BRAND</b>
-            </td>
-            <td>
+            </th>
+            <th>
                 <b>MODEL</b>
+            </th>
+            <th>
+                <b>SERIAL NUMBER</b>
+            </th>
+        </tr>
+        @foreach($transaction->inventories as $inventory)
+        <tr align='center'>
+            <td>
+                {{$inventory->inventoriesData->category->category_name}}
             </td>
             <td>
-                <b>SERIAL NUMBER</b>
+                OBN-{{$inventory->inventoriesData->category->code}}-{{str_pad($inventory->inventoriesData->equipment_code, 5, '0', STR_PAD_LEFT)}}
+            </td>
+            <td>
+                {{$inventory->inventoriesData->brand}}
+            </td>
+            <td>
+                {{$inventory->inventoriesData->model}}
+            </td>
+            <td>
+                {{$inventory->inventoriesData->serial_number}}
             </td>
         </tr>
+        @endforeach
     </table>
 
     <table width="100%" cellspacing="0" border='0' >
@@ -142,7 +161,7 @@
                     <br>
                     <br>
                     <br>
-                    {{auth()->user()->name}}<br>
+                    {{$transaction->name}}<br>
                     <span class='font-design' style='font-size:12px;padding-bottom:10px;text-decoration: overline;' >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Signature over Printed Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
              
                 </td>

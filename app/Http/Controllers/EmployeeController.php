@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use Alert;
 use App\EmployeeInventories;
 use Illuminate\Http\Request;
 
@@ -11,8 +12,10 @@ class EmployeeController extends Controller
     //
     public function employees()
     {
-        $employeeInventories = EmployeeInventories::with('inventoryData')->get();
-        // dd($employeeInventories);
+        $employeeInventories = EmployeeInventories::with('inventoryData.category')->get();
+
+
+        //employee API
         $client = new Client([
             'base_uri' => 'http://203.177.143.61:8080/HRAPI/public/',
             'cookies' => true,

@@ -11,4 +11,8 @@ class EmployeeInventories extends Model
     {
         return $this->belongsTo(Inventory::class,'inventory_id','id');
     }
+    public function EmployeeInventories()
+    {
+        return $this->hasMany(EmployeeInventories::class,'emp_code','emp_code')->where('generated',null)->where('status',"Active");
+    }
 }

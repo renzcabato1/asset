@@ -17,6 +17,7 @@
                             <th >Model</th>
                             <th >Serial Number</th>
                             <th >Description</th>
+                            <th >Status</th>
                         </tr>
                     </thead>
                     <tbody id='AccountabilitiesData'>

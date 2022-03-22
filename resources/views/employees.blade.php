@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">
-                        <table class="table table-striped table-hover" id="employees-table" style="width:100%;">
+                        <table class="table table-hover " id="employees-table" style="width:100%;">
                           <thead>
                             <tr>
                               <th>Name</th>
@@ -21,7 +21,7 @@
                               <th>Emplooyee Type</th>
                               <th>Approver</th>
                               <th>Status</th>
-                              <th>Accountability</th>
+                              <th>Action</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -38,7 +38,6 @@
                                       <a href="#" onclick='viewAccountabilities({{$employee->badgeno}});' title='View Accountabilities' class="btn btn-icon btn-primary" data-toggle="modal" data-target="#viewAccountability"><i class="far fa-eye"></i></a>
                                       <a href="#" title='Generate QR Code' onclick="qrGenerateData('{{$employee->badgeno}}');" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#generateQrCode{{$employee->badgeno}}"><i class="fas fa-qrcode"></i></a>
                                       
-                                      {{-- <a href="#" class="btn btn-icon btn-success"><i class="fas fa-print"></i></a> --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -59,18 +58,22 @@
     var employeeInventories = {!! json_encode($employeeInventories->toArray()) !!};
     function viewAccountabilities(Data)
     {
-        
+      $("#AccountabilitiesData" ).empty();
+        var count = 0;
         for(var i=0;i<employeeInventories.length;i++)
         {
           if(Data == employeeInventories[i].emp_code)
           {
+            
+            count = count +1;
             var tableTd = "<tr>";
-                tableTd += "<td>"+employeeInventories[i].inventory_data.id+"</td>";
-                tableTd += "<td>"+employeeInventories[i].inventory_data.category_id+"</td>";
+                tableTd += "<td>OBN-"+employeeInventories[i].inventory_data.category.code+"-"+pad("00000",employeeInventories[i].inventory_data.id,true)+"</td>";
+                tableTd += "<td>"+employeeInventories[i].inventory_data.category.category_name+"</td>";
                 tableTd += "<td>"+employeeInventories[i].inventory_data.brand+"</td>";
                 tableTd += "<td>"+employeeInventories[i].inventory_data.model+"</td>";
                 tableTd += "<td>"+employeeInventories[i].inventory_data.serial_number+"</td>";
                 tableTd += "<td>"+employeeInventories[i].inventory_data.description+"</td>";
+                tableTd += "<td>"+employeeInventories[i].status+"</td>";
                 tableTd += "</tr>";
 
             $("#AccountabilitiesData" ).append(tableTd);
@@ -78,6 +81,24 @@
 
           }
         }
+        if(count == 0)
+        {
+            var tableTd = "<tr>";
+                tableTd += "<td colspan='6' class='text-center'>--No Data Found--</td>";
+                tableTd += "</tr>";
+                $("#AccountabilitiesData" ).append(tableTd);
+        }
+       
+       
+    }
+    function pad(pad, str, padLeft) {
+    if (typeof str === 'undefined') 
+        return pad;
+    if (padLeft) {
+        return (pad + str).slice(-pad.length);
+    } else {
+        return (str + pad).substring(0, pad.length);
+    }
     }
 </script>
 @endsection

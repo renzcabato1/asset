@@ -59,6 +59,14 @@
     {
       text-align: left;
     }
+    #transaction-table_filter
+    {
+      text-align: right;
+    }
+    #transaction-table_filter label
+    {
+      text-align: left;
+    }
     #accountability-table_filter
     {
       text-align: right;
@@ -126,12 +134,18 @@
               <li class="dropdown  @if($header == "Available Assets") active @endif">
                 <a href="{{ url('/available-assets') }}" class="nav-link" onclick='show();'><i data-feather="check-square"></i><span>Available Assets</span></a>
               </li>
-              <li class="dropdown  @if($header == "For Repair") active @endif">
+              <li class="dropdown  @if($header == "For Repairs") active @endif">
                 <a href="{{ url('/for-repair') }}" class="nav-link" onclick='show();'><i data-feather="settings"></i><span>For Repair</span></a>
               </li>
-              <li class="dropdown  @if($header == "For Maintenance") active @endif">
-                <a href="{{ url('/for-maintenance') }}" class="nav-link" onclick='show();'><i data-feather="share-2"></i><span>For Maintenance</span></a>
+              {{-- <li class="dropdown  @if($header == "Deployed Assets") active @endif">
+                <a href="{{ url('/deployed-assets') }}" class="nav-link" onclick='show();'><i data-feather="share-2"></i><span>Deployed Assets</span></a>
+              </li> --}}
+              <li class="dropdown  @if($header == "Accountabilities") active @endif">
+                <a href="{{ url('/accountabilities') }}" class="nav-link" onclick='show();'><i data-feather="user-check"></i><span>Accountabilities</span></a>
               </li>
+              <li class="dropdown  @if($header == "Transactions") active @endif">
+                <a href="{{ url('/transactions') }}" class="nav-link" onclick='show();'><i data-feather="file-text"></i><span>Transactions</span></a>
+              </li> 
               <li class="menu-header">Settings</li>
               <li class="dropdown @if($header == "Category") active @endif">
                 <a href="{{ url('/category') }}" class="nav-link" onclick='show();'><i data-feather="list"></i><span>Categories</span></a>
@@ -171,9 +185,9 @@
   <!-- General JS Scripts -->
   <script src="{{ asset('assets/js/app.min.js') }}"></script>
   <!-- JS Libraies -->
-  <script src="{{ asset('assets/bundles/apexcharts/apexcharts.min.js') }}"></script>
+  {{-- <script src="{{ asset('assets/bundles/apexcharts/apexcharts.min.js') }}"></script> --}}
   <!-- Page Specific JS File -->
-  <script src="{{ asset('assets/js/page/index.js') }}"></script>
+  {{-- <script src="{{ asset('assets/js/page/index.js') }}"></script> --}}
   <!-- Template JS File -->
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
   <!-- Custom JS File -->
@@ -190,6 +204,8 @@
   <script src="{{ asset('assets/js/page/sweetalert.js') }}"></script>
   <!-- Page Specific JS File -->
   <script src="{{ asset('assets/js/page/datatables.js') }}"></script>
+
+
   <script>
     $(".deactivate-category").click(function () {
       var id = $(this).parent("td").data('id');
@@ -247,6 +263,7 @@
     });
   
   </script>
+  @include('sweetalert::alert')
 </body>
 
 
