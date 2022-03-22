@@ -127,6 +127,7 @@ class AssetController extends Controller
         $invetory->model = $request->model;
         $invetory->serial_number = $request->serial_number;
         $invetory->description = $request->description;
+        $invetory->amount = $request->amount;
         // dd($request->employee);
         if($request->employee == null)
         {
