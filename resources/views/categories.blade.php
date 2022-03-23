@@ -46,7 +46,7 @@
                               <th>Category Code</th>
                               <th>Category Name</th>
                               <th>Status</th>
-                              <th>Image</th>
+                              {{-- <th>Image</th> --}}
                               <th>Action</th>
                             </tr>
                           </thead>
