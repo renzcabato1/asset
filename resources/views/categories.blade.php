@@ -57,11 +57,11 @@
                                     <td>{{$category->code}}</td>
                                     <td>{{$category->category_name}}</td>
                                     <td>@if($category->status == "Active") <small>Active</small> @else <small class='label label-danger'>Inactive</small>  @endif</td>
-                                    <td>
+                                    {{-- <td>
                                         <figure>
                                             <img src="{{URL::asset($category->image_path)}}" class=" avatar avatar-lg zoom "   style='background-color:white;'>
                                         </figure>
-                                    </td>
+                                    </td> --}}
                                     <td data-id='{{$category->id}}'>
                                         @if($category->status == "Active")
                                         <a href="#" class="btn btn-icon btn-primary btn-sm" data-toggle="modal" data-target="#editCategory"><i class="far fa-edit"></i></a> 
