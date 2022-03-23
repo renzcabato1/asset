@@ -19,7 +19,7 @@
                               <th>Department</th>
                               <th>Position</th>
                               <th>Emplooyee Type</th>
-                              <th>Approver</th>
+                              {{-- <th>Approver</th> --}}
                               <th>Status</th>
                               <th>Action</th>
                             </tr>
@@ -32,11 +32,11 @@
                                     <td>{{$employee->department}}</td>
                                     <td>{{$employee->position}}</td>
                                     <td>{{$employee->emp_type}}</td>
-                                    <td>@if($employee->approver_info) {{$employee->approver_info->lastname}}, {{$employee->approver_info->firstname}}@endif</td>
+                                    {{-- <td>@if($employee->reporting_to) {{$employee->reporting_to}}, {{$employee->reporting_to}}@endif</td> --}}
                                     <td>{{$employee->emp_status}}</td>
                                     <td>
                                       <a href="#" onclick='viewAccountabilities({{$employee->badgeno}});' title='View Accountabilities' class="btn btn-icon btn-primary" data-toggle="modal" data-target="#viewAccountability"><i class="far fa-eye"></i></a>
-                                      <a href="#" title='Generate QR Code' onclick="qrGenerateData('{{$employee->badgeno}}');" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#generateQrCode{{$employee->badgeno}}"><i class="fas fa-qrcode"></i></a>
+                                      <a href="#" title='Generate QR Code' class="btn btn-icon btn-warning" data-toggle="modal" data-target="#generateQrCode{{$employee->badgeno}}"><i class="fas fa-qrcode"></i></a>
                                       
                                     </td>
                                 </tr>
