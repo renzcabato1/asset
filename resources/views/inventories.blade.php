@@ -82,7 +82,7 @@
                                 <td>{{$inventory->brand}}</td>
                                 <td>{{$inventory->model}}</td>
                                 <td>{{$inventory->serial_number}}</td>
-                                <td>{!! nl2br(e($inventory->description)) !!}</td>
+                                <td><small>{!! nl2br(e($inventory->description)) !!}</small></td>
                                 <td>{{$inventory->status}}</td>
                                 <td></td>
                               </tr>
