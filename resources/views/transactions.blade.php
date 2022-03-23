@@ -79,8 +79,12 @@
                                 <td>{{date('M d, Y',strtotime($trans->created_at))}}</td>
                                 <td>{{$trans->status}}</td>
                                 <td>
+                                  @if($trans->status == "For Upload")
                                   <a href='{{ url('/accountabilityPDF/'.$trans->id) }}' target='_blank' title="Print" class="btn btn-icon btn-warning fas fa-print" > </a>
                                   <button onclick='uploadPDF({{$trans->id}})' data-toggle="modal" data-target="#uploadPDF" title="Upload" class="btn btn-icon btn-primary fas fa-upload" > </button>
+                                  @else
+                                  <a href='{{ url($trans->pdf) }}' target='_blank' title="Signed Contract" class="btn btn-icon btn-warning fas fa-print" > </a>
+                                  @endif
                                 </td>
                               </tr>
                             @endforeach

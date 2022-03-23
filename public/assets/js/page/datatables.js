@@ -47,9 +47,10 @@ $('#employees-table').DataTable({
 $('#transaction-table').DataTable({
   "scrollX": true,
   stateSave: true,
-  "columnDefs": [
-    { "sortable": false, "targets": [0, 2, 3] }
-  ],
+  order: [[0, "desc" ]],
+  // "columnDefs": [
+  //   { "sortable": false, "targets": [0, 1,2, 3] }
+  // ],
 });
 $('#accountability-table').DataTable({
   "scrollX": true,

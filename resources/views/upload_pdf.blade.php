@@ -13,7 +13,7 @@
                     <div class='row'>
                         <div class='col-sm-12'>
                            Upload Signed Document
-                            <input type="hidden" name='transaction' id='transaction' class="form-control mb-2 mr-sm-2"  placeholder="Employee Code" required readonly>
+                            <input type="hidden" name='transaction' id='transaction' class="form-control mb-2 mr-sm-2"  placeholder="Transaction" required readonly>
                             <input type="file" class="form-control form-control mb-2 mr-sm-2" name='upload_pdf' required>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
     function uploadPDF(id)
     {
        
-        document.getElementById("employee_code").value = employee.badgeno;
+        document.getElementById("transaction").value = id;
         
     }
   </script>

@@ -1,5 +1,4 @@
 @extends('layouts.header')
-
 @section('content')
 <div class="main-content">
     <section class="section">

@@ -273,7 +273,7 @@ class AssetController extends Controller
             $employees = collect($employees);
             $employeeInventories = EmployeeInventories::with('inventoryData.category','EmployeeInventories.inventoryData.category')->where('status','Active')->where('generated',null)->get();
             $transactions = Transaction::orderBy('id','desc')->get();
-            
+            // dd($transactions); 
             return view('transactions',
             array(
             'subheader' => '',
@@ -378,5 +378,24 @@ class AssetController extends Controller
             )
         );
 
+    }
+    public function uploadSignedContract(Request $request)
+    {
+        // dd($request->all());
+        $transaction = Transaction::where('id',$request->transaction)->first();
+        $transaction->uploaded_by = auth()->user()->id;
+        if($request->hasFile('upload_pdf'))
+        {
+            $attachment = $request->file('upload_pdf');
+            $original_name = $attachment->getClientOriginalName();
+            $name = time().'_'.$attachment->getClientOriginalName();
+            $attachment->move(public_path().'/transac/', $name);
+            $file_name = '/transac/'.$name;
+            $transaction->pdf = $file_name;
+            $transaction->status = "Uploaded";
+            $transaction->save();
+            Alert::success('Successfully uploaded.')->persistent('Dismiss');
+            return back();
+        }
     }
 }

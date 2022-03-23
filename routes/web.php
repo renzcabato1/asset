@@ -16,8 +16,6 @@ Route::group( ['middleware' => 'auth'], function()
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
-
-
 //Category
 Route::get('category','CategoryController@categories');
 Route::post('new-category','CategoryController@newCategory');
@@ -25,10 +23,8 @@ Route::post('deactivate-category','CategoryController@deactivateCategory');
 Route::post('activate-category','CategoryController@activateCategory');
 
 
-
 //Employees API
 Route::get('employees','EmployeeController@employees');
-
 
 //Assets
 Route::get('assets-inventory','AssetController@assets');
@@ -44,9 +40,9 @@ Route::post('generate-data','AssetController@generateData');
 //Request
 Route::get('requests','RequestController@viewRequests');
 
-
 //PDF
 Route::get('accountabilityPDF/{id}','AssetController@viewAccountabilityPdf');
+Route::post('upload-pdf','AssetController@uploadSignedContract');
 
 //for Repair
 Route::get('for-repair','AssetController@for_repair');
