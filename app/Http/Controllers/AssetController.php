@@ -396,6 +396,7 @@ class AssetController extends Controller
             $transaction->save();
             Alert::success('Successfully uploaded.')->persistent('Dismiss');
             return back();
+            
         }
     }
 }
