@@ -335,4 +335,48 @@ class AssetController extends Controller
         return back();
         // dd($request->all());
     }
+    public function viewAccountabilitiesData(Request $request)
+    {
+       
+        $employeeInventories = EmployeeInventories::with('inventoryData.category')->where('emp_code',$request->emp_id)->get();
+        $categories = Category::where('status','Active')->get();
+
+         //employee API
+         $client = new Client([
+            'base_uri' => 'http://203.177.143.61:8080/HRAPI/public/',
+            'cookies' => true,
+            ]);
+
+        $data = $client->request('POST', 'oauth/token', [
+            'json' => [
+                'username' => 'rccabato@premiummegastructures.com',
+                'password' => 'P@ssw0rd',
+                'grant_type' => 'password',
+                'client_id' => '2',
+                'client_secret' => 'rVI1kVh07yb4TBw8JiY8J32rmDniEQNQayf3sEyO',
+                ]
+        ]);
+
+        $response = json_decode((string) $data->getBody());
+        $key = $response->access_token;
+
+        $dataEmployee = $client->request('get', 'employees', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $key,
+                    'Accept' => 'application/json'
+                ],
+            ]);
+        $responseEmployee = json_decode((string) $dataEmployee->getBody());
+        $employees = collect($responseEmployee->data);
+        $filtered = $employees->where('badgeno', $request->emp_id);
+        
+        return view('viewAccountabilitiesData',
+        array(
+            'employeeInventories' => $employeeInventories,
+            'employees' => $employees,
+            'filtered' => $filtered,
+            )
+        );
+
+    }
 }

@@ -72,7 +72,7 @@
                 tableTd += "<td>"+employeeInventories[i].inventory_data.brand+"</td>";
                 tableTd += "<td>"+employeeInventories[i].inventory_data.model+"</td>";
                 tableTd += "<td>"+employeeInventories[i].inventory_data.serial_number+"</td>";
-                tableTd += "<td>"+employeeInventories[i].inventory_data.description+"</td>";
+                tableTd += "<td><small>"+nl2br (employeeInventories[i].inventory_data.description)+"</small></td>";
                 tableTd += "<td>"+employeeInventories[i].status+"</td>";
                 tableTd += "</tr>";
 
@@ -91,6 +91,13 @@
        
        
     }
+
+    function nl2br (str, is_xhtml) {
+  // http://kevin.vanzonneveld.net
+  var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br ' + '/>' : '<br>'; // Adjust comment to avoid issue on phpjs.org display
+
+  return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+}
     function pad(pad, str, padLeft) {
     if (typeof str === 'undefined') 
         return pad;

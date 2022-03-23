@@ -51,9 +51,10 @@ Route::get('accountabilityPDF/{id}','AssetController@viewAccountabilityPdf');
 //for Repair
 Route::get('for-repair','AssetController@for_repair');
 
-//MANUAL
-
-
-
 
 });
+
+//outside
+Route::get('request','RequestController@borrow');
+Route::get('BorrowInformation/{id}','RequestController@BorrowInformation');
+Route::get('getDataAccountability','AssetController@viewAccountabilitiesData');

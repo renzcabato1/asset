@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body text-center border " id='qr_code{{$employee->badgeno}}'>
 
-                <span id='qrGenerate'>{!! QrCode::size(250)->generate('http://203.177.143.61:8080/asset/public?emp_id='.$employee->badgeno); !!}</span> 
+                <span id='qrGenerate'>{!! QrCode::size(250)->generate('http://203.177.143.61:8080/asset/public/getDataAccountability?emp_id='.$employee->badgeno); !!}</span> 
                 <br>
                 <span id='employeeID'></span>
             </div>

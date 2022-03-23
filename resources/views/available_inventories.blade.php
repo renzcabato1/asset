@@ -17,7 +17,7 @@
                         {{ csrf_field() }}
                       
                         <div class="card-header">
-                        <h4>Assignt to Employee </h4>
+                        <h4>Assign to Employee </h4>
                         </div>
                         <div class="card-body">
                             <label>Assets</label>
