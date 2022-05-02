@@ -25,7 +25,7 @@ class CategoryController extends Controller
         $this->validate($request, [
             'code' => 'unique:categories|required',
             'category_name' => 'required',
-            'image' => 'required',
+            // 'image' => 'required',
         ]);
 
         $category = new Category;
