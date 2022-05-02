@@ -75,6 +75,11 @@
     {
       text-align: left;
     }
+    .dataTables_paginate
+    {
+      float: right !important;
+    }
+
 </style>
 </head>
 
@@ -92,17 +97,15 @@
           </ul>
         </div>
         <ul class="navbar-nav navbar-right">
+         
+       
           <li class="dropdown"><a href="#" data-toggle="dropdown"
               class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{'images/no_image.png'}}" class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
               <div class="dropdown-title">Hello {{auth()->user()->name}}</div>
-              <a href="profile.html" class="dropdown-item has-icon"> <i class="far
+              {{-- <a href="profile.html" class="dropdown-item has-icon"> <i class="far
 										fa-user"></i> Profile
-              </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
-                Activities
-              </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
-                Settings
-              </a>
+              </a>  --}}
               <div class="dropdown-divider"></div>
               <a href="{{ route('logout') }}"  onclick="logout(); show();" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
                 Logout
@@ -223,7 +226,7 @@
                 data:{id:id},
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             }).done(function(data){
-                console.log(data);
+                // console.log(data);
                 swal('Category has been deactivated.', {  
                   icon: 'success',
                 });
@@ -250,7 +253,7 @@
                 data:{id:id},
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             }).done(function(data){
-                console.log(data);
+                // console.log(data);
                 swal('Category has been activated.', {  
                   icon: 'success',
                 });

@@ -20,8 +20,8 @@
                         <h4>New Category</h4>
                         </div>
                         <div class="card-body">
-                            <label >Image</label>
-                            <input type="file" class="form-control form-control mb-2 mr-sm-2" name='image' required>
+                            {{-- <label >Image</label>
+                            <input type="file" class="form-control form-control mb-2 mr-sm-2" name='image' required> --}}
                             <label >Category Name</label>
                             <input type="text" name='category_name' class="form-control mb-2 mr-sm-2" value="{{ old('category_name') }}" placeholder="Category Name" required>
                             <label >Category Code</label>

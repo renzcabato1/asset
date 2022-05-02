@@ -35,7 +35,7 @@
                             <label>Description</label>
                             <textarea onkeyup="setHeight('description');" style="height: 78px;" onkeydown="setHeight('description');" id='description' name='description' class="form-control" placeholder="Description" required>{{ old('description') }}</textarea>
                             <label>Date Purchased</label>
-                            <input type="date" name='date_purchased' max='{{date('Y-m-d')}}' class="form-control mb-2 mr-sm-2" value="{{ old('date_purchased') }}" placeholder="Date Purchased" required>
+                            <input type="date" name='date_purchased' max='{{date('Y-m-d')}}' class="form-control mb-2 mr-sm-2" value="{{ old('date_purchased') }}" placeholder="Date Purchased" >
                             <label>Amount</label>
                             <input type="number" name='amount' max='{{date('Y-m-d')}}' class="form-control mb-2 mr-sm-2" value="{{ old('amount') }}" step='0.01' min='0.01' placeholder="Amount" >
                             <label>Employee Assigned(optional)</label>

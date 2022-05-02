@@ -91,20 +91,20 @@
        
     }
 
-    function nl2br (str, is_xhtml) {
-  // http://kevin.vanzonneveld.net
-  var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br ' + '/>' : '<br>'; // Adjust comment to avoid issue on phpjs.org display
-
-  return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
-}
-    function pad(pad, str, padLeft) {
-    if (typeof str === 'undefined') 
-        return pad;
-    if (padLeft) {
-        return (pad + str).slice(-pad.length);
-    } else {
-        return (str + pad).substring(0, pad.length);
+    function nl2br (str, is_xhtml) 
+    {
+      var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br ' + '/>' : '<br>';
+      return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
     }
+    function pad(pad, str, padLeft) 
+    {
+      if (typeof str === 'undefined') 
+          return pad;
+      if (padLeft) {
+          return (pad + str).slice(-pad.length);
+      } else {
+          return (str + pad).substring(0, pad.length);
+      }
     }
 </script>
 @endsection

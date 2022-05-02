@@ -84,16 +84,27 @@ class AssetController extends Controller
                     'Accept' => 'application/json'
                 ],
             ]);
-        $responseEmployee = json_decode((string) $dataEmployee->getBody());
-        $employees = $responseEmployee->data;
 
+            
+        $dataDepartments = $client->request('get', 'departments', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $key,
+                'Accept' => 'application/json'
+            ],
+        ]);
+        $responseEmployee = json_decode((string) $dataEmployee->getBody());
+        $responseDepartment = json_decode((string) $dataDepartments->getBody());
+        $employees = $responseEmployee->data;
+        $departments = collect($responseDepartment->data);
+        // dd($departments);
         return view('available_inventories',
         
         array(
             'subheader' => '',
             'header' => "Available Assets",
             'inventories' => $inventories,
-            'employees' => $employees
+            'employees' => $employees,
+            'departments' => $departments
             )
         );
 

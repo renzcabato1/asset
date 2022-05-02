@@ -51,6 +51,8 @@ Route::get('for-repair','AssetController@for_repair');
 });
 
 //outside
-Route::get('request','RequestController@borrow');
+Route::get('request','RequestController@BorrowInformation');
 Route::get('BorrowInformation/{id}','RequestController@BorrowInformation');
 Route::get('getDataAccountability','AssetController@viewAccountabilitiesData');
+Route::post('borrow-submit','RequestController@borrowSubmit');
+Route::get('trackStatus','RequestController@trackStatus');

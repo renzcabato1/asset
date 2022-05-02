@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/app.min.css') }}">
   <link rel="shortcut icon" href="{{asset('images/icon.png')}}">
   <!-- Template CSS -->
-  
+  <link rel="stylesheet" href="{{asset('assets/bundles/summernote/summernote-bs4.css')}}">
   <link rel="stylesheet" href="{{asset('assets/bundles/select2/dist/css/select2.min.css')}}"> 
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
@@ -42,23 +42,33 @@
     <div id = "myDiv" class="loader"></div>
   {{-- <div class="loader"></div> --}}
     @yield('content')
+    @include('sweetalert::alert')
    <!-- General JS Scripts -->
     <!-- General JS Scripts -->
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
-    <!-- JS Libraies -->
-    {{-- <script src="{{ asset('assets/bundles/apexcharts/apexcharts.min.js') }}"></script> --}}
-    <!-- Page Specific JS File -->
-    {{-- <script src="{{ asset('assets/js/page/index.js') }}"></script> --}}
     <!-- Template JS File -->
-    <script src="{{ asset('assets/js/scripts.js') }}"></script>
-    <!-- Custom JS File -->
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
-    <script>
-        function show()
-    {
-        document.getElementById("myDiv").style.display="block";
-    }
-    </script>
+  <script src="{{ asset('assets/js/scripts.js') }}"></script>
+  <!-- Custom JS File -->
+  <script src="{{ asset('assets/js/custom.js') }}"></script>
+  <script src="{{ asset('assets/bundles/summernote/summernote-bs4.js') }}"></script>
+
+  <script src="{{ asset('assets/bundles/select2/dist/js/select2.full.min.js') }}"></script>
+  <!-- JS Libraies -->
+  {{-- <script src="{{ asset('assets/bundles/apexcharts/apexcharts.min.js') }}"></script> --}}
+  <!-- Page Specific JS File -->
+  {{-- <script src="{{ asset('assets/js/page/index.js') }}"></script> --}}
+  <!-- Template JS File -->
+  <script src="{{ asset('assets/js/scripts.js') }}"></script>
+  <!-- Custom JS File -->
+  <script src="{{ asset('assets/js/custom.js') }}"></script>
+  
+  <script>
+      function show()
+      {
+          document.getElementById("myDiv").style.display="block";
+      }
+  </script>
+    
  </body>
  
  

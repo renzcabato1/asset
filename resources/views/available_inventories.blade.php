@@ -17,9 +17,16 @@
                         {{ csrf_field() }}
                       
                         <div class="card-header">
-                        <h4>Assign to Employee </h4>
+                        <h4>Assign to Employee / Department </h4>
                         </div>
                         <div class="card-body">
+                          <label class="mt-2">
+                            <input type="checkbox" onchange='department(this)' name="custom-switch-checkbox" class="custom-switch-input">
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">Department</span>
+                          </label><br>
+                          <div id='department'>
+                          </div>
                             <label>Assets</label>
                             <select class="form-control select2" name='asset[]' style='width:100%' required multiple >
                                 {{-- <option value=''>Select assets</option> --}}
@@ -27,6 +34,7 @@
                                     <option value='{{$inventory->id}}'>OBN-{{$inventory->category->code}}-{{str_pad($inventory->equipment_code, 5, '0', STR_PAD_LEFT)}}</option>
                                 @endforeach
                             </select>
+                          
                             <label>Employee Assigned</label>
                             <select class="form-control select2" name='employee' style='width:100%' required >
                                 <option value=''>Select employee</option>
@@ -50,7 +58,7 @@
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">
-                        <table class="table table-striped table-hover" id="employees-table" style="width:100%;">
+                        <table class="table table-hover" id="employees-table" style="width:100%;">
                           <thead>
                             <tr>
                               <th>Code</th>
@@ -81,5 +89,25 @@
         </div>
     </section>
 </div>
+<script>
+  function department(data)
+  {
+      if(data.checked == true)
+      {
+         var data = "<label>Department</label><select id='department_select' class='form-control select3' name='department[]' style='width:100%' required >";
+             data += "<option value=''></option>";
+             data += "@foreach($departments as $department)";
+             data += "<option value='{{$department->rowid}}'>{{$department->descs}}</option>";
+             data += "@endforeach";
+             data += "</select>";
+             $('#department').append(data);
+             $(".select3").select2();
+      }
+      else
+      {
+         $('#department').empty();
+      }
+  }
+</script>
 @endsection
 
