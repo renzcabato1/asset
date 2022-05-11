@@ -118,7 +118,7 @@ class AssetController extends Controller
             'model' => 'required',
             'serial_number' => 'required|unique:inventories',
             'description' => 'required',
-            'date_purchased' => 'required',
+            // 'date_purchased' => 'required',
         ]);
 
         $oldest_data = Inventory::where('category_id',$request->category)->orderBy('id','desc')->first();
