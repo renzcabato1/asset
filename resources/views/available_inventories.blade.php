@@ -31,7 +31,7 @@
                             <select class="form-control select2" name='asset[]' style='width:100%' required multiple >
                                 {{-- <option value=''>Select assets</option> --}}
                                 @foreach($inventories as $inventory)
-                                    <option value='{{$inventory->id}}'>OBN-{{$inventory->category->code}}-{{str_pad($inventory->equipment_code, 5, '0', STR_PAD_LEFT)}}</option>
+                                    <option value='{{$inventory->id}}'>OBN-{{$inventory->category->code}}-{{str_pad($inventory->equipment_code, 4, '0', STR_PAD_LEFT)}}</option>
                                 @endforeach
                             </select>
                           
@@ -72,7 +72,7 @@
                           <tbody>
                             @foreach($inventories as $inventory)
                               <tr>
-                                <td>{{$inventory->category->code}}-{{str_pad($inventory->equipment_code, 5, '0', STR_PAD_LEFT)}}</td>
+                                <td>{{$inventory->category->code}}-{{str_pad($inventory->equipment_code, 4, '0', STR_PAD_LEFT)}}</td>
                                 <td>{{$inventory->category->category_name}}</td>
                                 <td>{{$inventory->brand}}</td>
                                 <td>{{$inventory->model}}</td>

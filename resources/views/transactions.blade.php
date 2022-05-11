@@ -72,7 +72,7 @@
                           <tbody>
                             @foreach($transactions as $trans)
                               <tr>
-                                <td>TR-{{str_pad($trans->id, 5, '0', STR_PAD_LEFT)}}</td>
+                                <td>TR-{{str_pad($trans->id, 4, '0', STR_PAD_LEFT)}}</td>
                                 <td>{{$trans->name}}</td>
                                 <td>{{$trans->department}}</td>
                                 <td>{{$trans->position}}</td>

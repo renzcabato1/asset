@@ -116,7 +116,7 @@
                 {{$inventory->inventoriesData->category->category_name}}
             </td>
             <td>
-                OBN-{{$inventory->inventoriesData->category->code}}-{{str_pad($inventory->inventoriesData->equipment_code, 5, '0', STR_PAD_LEFT)}}
+                OBN-{{$inventory->inventoriesData->category->code}}-{{str_pad($inventory->inventoriesData->equipment_code, 4, '0', STR_PAD_LEFT)}}
             </td>
             <td>
                 {{$inventory->inventoriesData->brand}}

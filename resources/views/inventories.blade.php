@@ -77,7 +77,7 @@
                           <tbody>
                             @foreach($inventories as $inventory)
                               <tr>
-                                <td>OBN-{{$inventory->category->code}}-{{str_pad($inventory->equipment_code, 5, '0', STR_PAD_LEFT)}}</td>
+                                <td>OBN-{{$inventory->category->code}}-{{str_pad($inventory->equipment_code, 4, '0', STR_PAD_LEFT)}}</td>
                                 <td>{{$inventory->category->category_name}}</td>
                                 <td>{{$inventory->brand}}</td>
                                 <td>{{$inventory->model}}</td>

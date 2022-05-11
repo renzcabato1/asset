@@ -92,8 +92,6 @@
                 dataAssets += inventories[i].inventory_data.serial_number;    
                 dataAssets += "</div></div>";    
                 $('#dataAssets').append(dataAssets);
-                
-                        
         }
 
     }
