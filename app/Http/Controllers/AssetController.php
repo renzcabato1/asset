@@ -6,6 +6,7 @@ use App\Category;
 use PDF;
 use App\EmployeeInventories;
 use App\Transaction;
+use App\AssetCode;
 use App\InventoryTransaction;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
@@ -171,7 +172,25 @@ class AssetController extends Controller
             $data = Inventory::where('id',$asset)->first();
             $data->status = "Deployed";
             $data->save();
-
+            $asset_code = AssetCode::where('employee_id',$request->employee)->first();
+            $asset_codes = AssetCode::orderBy('id','desc')->first();
+            $code = 0;
+            if($asset_code == null)
+            {
+                if($asset_codes == null)
+                {
+                    $code = $code + 1;
+                }
+                else
+                {
+                    $code =  $asset_codes->code + 1;
+                }
+                $newCode = new AssetCode;
+                $newCode->code = $code;
+                $newCode->employee_id = $request->employee;
+                $newCode->encode_by = auth()->user()->id;
+                $newCode->save();
+            }
             $employeeInventory = new EmployeeInventories;
             $employeeInventory->inventory_id = $asset;
             $employeeInventory->emp_code = $request->employee;
@@ -282,6 +301,7 @@ class AssetController extends Controller
             $responseEmployee = json_decode((string) $dataEmployee->getBody());
             $employees = $responseEmployee->data;
             $employees = collect($employees);
+            $assetCodes = AssetCode::get();
             $employeeInventories = EmployeeInventories::with('inventoryData.category','EmployeeInventories.inventoryData.category')->where('status','Active')->where('generated',null)->get();
             $transactions = Transaction::orderBy('id','desc')->get();
             // dd($transactions); 
@@ -292,6 +312,7 @@ class AssetController extends Controller
             'employeeInventories' => $employeeInventories,
             'employees' => $employees,
             'transactions' => $transactions,
+            'assetCodes' => $assetCodes,
             )
         );
     }
@@ -319,6 +340,7 @@ class AssetController extends Controller
     {
         // dd($request->all());
         $employeeInventories = EmployeeInventories::where('emp_code',$request->employee_code)->where('status','Active')->where('generated',null)->get();
+      
 
         // $employeeInventories->generated = 1;
         // $employeeInventories->update();

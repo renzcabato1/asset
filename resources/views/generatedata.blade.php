@@ -60,21 +60,23 @@
 </div>
 <script type="text/javascript">
     var employees = {!! json_encode($employees->toArray()) !!};
-
+    var assetCodes = {!! json_encode($assetCodes->toArray()) !!};
+    console.log(assetCodes);
+   
     function generateEmployee(name)
     {
+        var code = assetCodes.find(code => code.employee_id === name.emp_code);
         var employee = employees.find(employee => employee.badgeno == name.emp_code);
 
-        console.log(name);
         var inventories = name.employee_inventories;
-        document.getElementById("employee_code").value = employee.badgeno;
+        document.getElementById("employee_code").value = "OBN-ASSET-"+pad("0000",code.code,true);
         document.getElementById("department").value = employee.department;
         document.getElementById("position").value = employee.position;
         document.getElementById("name").value = employee.firstname+" "+employee.lastname;
         $('#dataAssets').empty();
         for (var i = 0; i < inventories.length; i++) {
 
-            var dataAssets = "<div class='row border'><div class='col-sm-4 border'>OBN-"+inventories[i].inventory_data.category.code+"-"+pad("00000",inventories[i].inventory_id,true)+"";
+            var dataAssets = "<div class='row border'><div class='col-sm-4 border'>OBN-"+inventories[i].inventory_data.category.code+"-"+pad("0000",inventories[i].inventory_id,true)+"";
                 // dataAssets += inventories[i].inventory_id;    
                 dataAssets += "</div>";    
                 // dataAssets += "<div class='col-sm-2 border'>";    
