@@ -339,14 +339,14 @@ class AssetController extends Controller
     public function generateData (Request $request)
     {
         // dd($request->all());
-        $employeeInventories = EmployeeInventories::where('emp_code',$request->employee_code)->where('status','Active')->where('generated',null)->get();
-      
+        $employeeInventories = EmployeeInventories::where('emp_code',$request->employee_codes)->where('status','Active')->where('generated',null)->get();
+        // dd($employeeInventories);
 
         // $employeeInventories->generated = 1;
         // $employeeInventories->update();
 
         $transaction = new Transaction;
-        $transaction->emp_code = $request->employee_code;
+        $transaction->emp_code = $request->employee_codes;
         $transaction->asset_code = $request->employee_code;
         $transaction->name = $request->name;
         $transaction->department = $request->department;
