@@ -79,7 +79,7 @@
         $('#dataAssets').empty();
         for (var i = 0; i < inventories.length; i++) {
 
-            var dataAssets = "<div class='row border'><div class='col-sm-4 border'>OBN-"+inventories[i].inventory_data.category.code+"-"+pad("0000",inventories[i].inventory_id,true)+"";
+            var dataAssets = "<div class='row border'><div class='col-sm-4 border'>OBN-"+inventories[i].inventory_data.category.code+"-"+pad("0000",inventories[i].equipment_code,true)+"";
                 // dataAssets += inventories[i].inventory_id;    
                 dataAssets += "</div>";    
                 // dataAssets += "<div class='col-sm-2 border'>";    
