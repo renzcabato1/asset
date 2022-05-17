@@ -62,7 +62,7 @@
 <script type="text/javascript">
     var employees = {!! json_encode($employees->toArray()) !!};
     var assetCodes = {!! json_encode($assetCodes->toArray()) !!};
-    // console.log(assetCodes);
+    console.log(assetCodes);
    
     function generateEmployee(name)
     {
@@ -75,7 +75,7 @@
         document.getElementById("employee_codes").value = name.emp_code;
         document.getElementById("department").value = employee.department;
         document.getElementById("position").value = employee.position;
-        document.getElementById("name").value = employee.firstname+" "+employee.lastname;
+        document.getElementById("name").value = employee.firstname+" "+employee.middlename+" "+employee.lastname;
         $('#dataAssets').empty();
         for (var i = 0; i < inventories.length; i++) {
 
