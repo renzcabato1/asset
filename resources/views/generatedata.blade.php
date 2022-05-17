@@ -70,7 +70,7 @@
         var employee = employees.find(employee => employee.badgeno == name.emp_code);
 
         var inventories = name.employee_inventories;
-        // console.log(name.emp_code);
+        console.log(name);
         document.getElementById("employee_code").value = "OBN-ASSET-"+pad("0000",code.code,true);
         document.getElementById("employee_codes").value = name.emp_code;
         document.getElementById("department").value = employee.department;
@@ -79,7 +79,7 @@
         $('#dataAssets').empty();
         for (var i = 0; i < inventories.length; i++) {
 
-            var dataAssets = "<div class='row border'><div class='col-sm-4 border'>OBN-"+inventories[i].inventory_data.category.code+"-"+pad("0000",inventories[i].equipment_code,true)+"";
+            var dataAssets = "<div class='row border'><div class='col-sm-4 border'>OBN-"+inventories[i].inventory_data.category.code+"-"+pad("0000",inventories[i].inventory_data.equipment_code,true)+"";
                 // dataAssets += inventories[i].inventory_id;    
                 dataAssets += "</div>";    
                 // dataAssets += "<div class='col-sm-2 border'>";    
