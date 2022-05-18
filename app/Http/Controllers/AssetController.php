@@ -112,12 +112,13 @@ class AssetController extends Controller
     }
     public function newAssets(Request $request)
     {
+        $def = "N/A";
 
         $this->validate($request, [
             'category' => 'required',
             'brand' => 'required',
             'model' => 'required',
-            'serial_number' => 'required|unique:inventories',
+            'serial_number' => 'required|unique:inventories,serial_number,'.$def.',serial_number',
             'description' => 'required',
             // 'date_purchased' => 'required',
         ]);
@@ -153,7 +154,7 @@ class AssetController extends Controller
         if($request->employee)
         {
             $employeeInventory = new EmployeeInventories;
-            $employeeInventory->category_id = $invetory->id;
+            $employeeInventory->inventory_id = $invetory->id;
             $employeeInventory->emp_code = $request->employee;
             $employeeInventory->status = "Active";
             $employeeInventory->date_assigned = date('Y-m-d');
