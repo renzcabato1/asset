@@ -15,6 +15,7 @@
                            Asset Code
                         <input type="text" name='employee_code' id='employee_code' class="form-control mb-2 mr-sm-2"  placeholder="Employee Code" required readonly>
                         <input type="hidden" name='employee_codes' id='employee_codes' class="form-control mb-2 mr-sm-2"  placeholder="Employee Code" required readonly>
+                        <input type="hidden" name='email_address' id='email_address' class="form-control mb-2 mr-sm-2"  placeholder="Employee Code" required readonly>
                         </div>
                         <div class='col-sm-6'>
                             Name
@@ -62,7 +63,7 @@
 <script type="text/javascript">
     var employees = {!! json_encode($employees->toArray()) !!};
     var assetCodes = {!! json_encode($assetCodes->toArray()) !!};
-    console.log(assetCodes);
+    console.log(employees);
    
     function generateEmployee(name)
     {
@@ -73,6 +74,7 @@
         console.log(name);
         document.getElementById("employee_code").value = "OBN-ASSET-"+pad("0000",code.code,true);
         document.getElementById("employee_codes").value = name.emp_code;
+        document.getElementById("email_address").value = employee.emailaddress;
         document.getElementById("department").value = employee.department;
         document.getElementById("position").value = employee.position;
         document.getElementById("name").value = employee.firstname+" "+employee.middlename+" "+employee.lastname;

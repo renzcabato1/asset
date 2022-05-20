@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Inventory;
 use App\Category;
 use PDF;
+use App\Notifications\SignedContractNotification;
 use App\EmployeeInventories;
 use App\Transaction;
 use App\AssetCode;
@@ -351,6 +352,7 @@ class AssetController extends Controller
         $transaction->asset_code = $request->employee_code;
         $transaction->name = $request->name;
         $transaction->department = $request->department;
+        $transaction->email = $request->email_address;
         $transaction->position = $request->position;
         $transaction->status = "For Upload";
         $transaction->save();
@@ -415,7 +417,9 @@ class AssetController extends Controller
     }
     public function uploadSignedContract(Request $request)
     {
-        // dd($request->all());
+
+        $user = auth()->user();
+
         $transaction = Transaction::where('id',$request->transaction)->first();
         $transaction->uploaded_by = auth()->user()->id;
         if($request->hasFile('upload_pdf'))
@@ -428,6 +432,8 @@ class AssetController extends Controller
             $transaction->pdf = $file_name;
             $transaction->status = "Uploaded";
             $transaction->save();
+
+            $transaction->notify(new SignedContractNotification(url($file_name)));
             Alert::success('Successfully uploaded.')->persistent('Dismiss');
             return back();
             
