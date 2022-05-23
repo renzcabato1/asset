@@ -43,6 +43,7 @@ class SignedContractNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->subject('ASSET ACCOUNTABILITY FORM')
                     ->greeting('Hi!')
         
                     ->line('Please click the button bellow to download a copy of your signed contract.')

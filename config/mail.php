@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'motorpool@obanana.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'asset@obanana.com'),
         'name' => env('MAIL_FROM_NAME', 'no-reply-asset'),
     ],
 
