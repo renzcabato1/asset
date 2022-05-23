@@ -46,7 +46,7 @@ class SignedContractNotification extends Notification
                     ->subject('ASSET ACCOUNTABILITY FORM')
                     ->greeting('Hi!')
         
-                    ->line('Please click the button bellow to download a copy of your signed contract.')
+                    ->line('Please click the button bellow to download a copy of your signed ASSET ACCOUNTABILITY FORM.')
                     ->action('Download File', url($this->file_name))
                     // ->attach(url('transac/1648028716_accountability.pdf'))
                     ->line('Thank you for using our application!');
