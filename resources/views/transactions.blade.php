@@ -16,7 +16,7 @@
                 @include('error')
                 <div class="card">
                     <div class="card-header">
-                    <h4>Pending for Generate </h4>
+                    <h4>Pending for Generate(Employee) </h4>
                     </div>
                     <div class="card-body">
                       <table class="table table-hover" style="width:100%;">
@@ -29,8 +29,44 @@
                         <tbody>
                             @php
                                 $dataList  = collect($employeeInventories)->unique('emp_code');
+                                // dd($dataList);
                             @endphp
                             @foreach($dataList as $name)
+                              @php
+                                  $employees = collect($employees);
+                                  $filtered = $employees->where('badgeno', $name->emp_code);
+                              @endphp
+                              <tr>
+                                <td> 
+                                  @foreach($filtered->all() as $filt)
+                                    {{$filt->lastname}}, {{$filt->firstname}} {{$filt->middlename}}
+                                  @endforeach
+                                </td>
+                                <td><a href="#" class="btn btn-primary" onclick='generateEmployee({{$name}})' title='generate to pdf' data-toggle="modal" data-target="#generatedata"><i class='fas fa-file-export'></i> Generate</a></td>
+                              </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                    <h4>Pending for Generate(Department) </h4>
+                    </div>
+                    <div class="card-body">
+                      <table class="table table-hover" style="width:100%;">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $dataListDepartment  = collect($employeeInventoriesDepartment)->unique('department');
+                                // dd($dataListDepartment);
+                            @endphp
+                            @foreach($dataListDepartment as $name)
                               @php
                                   $employees = collect($employees);
                                   $filtered = $employees->where('badgeno', $name->emp_code);

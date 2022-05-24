@@ -94,10 +94,10 @@
   {
       if(data.checked == true)
       {
-         var data = "<label>Department</label><select id='department_select' class='form-control select3' name='department[]' style='width:100%' required >";
+         var data = "<label>Department</label><select id='department_select' class='form-control select3' name='department' style='width:100%' required >";
              data += "<option value=''></option>";
              data += "@foreach($departments as $department)";
-             data += "<option value='{{$department->rowid}}'>{{$department->descs}}</option>";
+             data += "<option value='{{$department->code}}'>{{$department->descs}} - {{$department->code}}</option>";
              data += "@endforeach";
              data += "</select>";
              $('#department').append(data);

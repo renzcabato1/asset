@@ -13,6 +13,10 @@ class EmployeeInventories extends Model
     }
     public function EmployeeInventories()
     {
-        return $this->hasMany(EmployeeInventories::class,'emp_code','emp_code')->where('generated',null)->where('status',"Active");
+        return $this->hasMany(EmployeeInventories::class,'emp_code','emp_code')->where('generated',null)->where('status',"Active")->where('department','=',null);
+    }
+    public function EmployeeInventoriesDepartment()
+    {
+        return $this->hasMany(EmployeeInventories::class,'emp_code','emp_code')->where('generated',null)->where('status',"Active")->where('department','!=',null);
     }
 }

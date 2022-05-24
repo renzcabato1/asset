@@ -169,34 +169,70 @@ class AssetController extends Controller
     }
     public function assignAssets(Request $request)
     {
+        // dd($request->all());
         foreach($request->asset as $asset)
         {
             $data = Inventory::where('id',$asset)->first();
             $data->status = "Deployed";
             $data->save();
-            $asset_code = AssetCode::where('employee_id',$request->employee)->first();
-            $asset_codes = AssetCode::orderBy('id','desc')->first();
-            $code = 0;
-            if($asset_code == null)
+            if($request->department != null)
             {
-                if($asset_codes == null)
+                $asset_code = AssetCode::where('department','=',$request->department)->first();
+                $asset_codes = AssetCode::where('department','=',$request->department)->orderBy('id','desc')->first();
+                $code = 0;
+                if($asset_code == null)
                 {
-                    $code = $code + 1;
+                    if($asset_codes == null)
+                    {
+                        $code = $code + 1;
+                    }
+                    else
+                    {
+                        $code =  $asset_codes->code + 1;
+                    }
+                    $newCode = new AssetCode;
+                    $newCode->code = $code;
+                    $newCode->employee_id = $request->employee;
+                    $newCode->department = $request->department;
+                    $newCode->encode_by = auth()->user()->id;
+                    $newCode->save();
                 }
-                else
-                {
-                    $code =  $asset_codes->code + 1;
-                }
-                $newCode = new AssetCode;
-                $newCode->code = $code;
-                $newCode->employee_id = $request->employee;
-                $newCode->encode_by = auth()->user()->id;
-                $newCode->save();
             }
+            else
+            {
+                $asset_code = AssetCode::where('employee_id',$request->employee)->where('department','=',null)->first();
+                $asset_codes = AssetCode::where('department','=',null)->orderBy('id','desc')->first();
+                $code = 0;
+                if($asset_code == null)
+                {
+                    if($asset_codes == null)
+                    {
+                        $code = $code + 1;
+                    }
+                    else
+                    {
+                        $code =  $asset_codes->code + 1;
+                    }
+                    $newCode = new AssetCode;
+                    $newCode->code = $code;
+                    $newCode->employee_id = $request->employee;
+                    $newCode->encode_by = auth()->user()->id;
+                    $newCode->save();
+                }
+            }
+            
             $employeeInventory = new EmployeeInventories;
             $employeeInventory->inventory_id = $asset;
             $employeeInventory->emp_code = $request->employee;
             $employeeInventory->status = "Active";
+            if($request->department != null)
+            {
+
+            }
+            else
+            {
+
+            }
             $employeeInventory->date_assigned = date('Y-m-d');
             $employeeInventory->assigned_by = auth()->user()->id;
             $employeeInventory->save();
@@ -304,7 +340,9 @@ class AssetController extends Controller
             $employees = $responseEmployee->data;
             $employees = collect($employees);
             $assetCodes = AssetCode::get();
-            $employeeInventories = EmployeeInventories::with('inventoryData.category','EmployeeInventories.inventoryData.category')->where('status','Active')->where('generated',null)->get();
+            $assetCodesDepartment = AssetCode::where('department','!=',null)->get();
+            $employeeInventories = EmployeeInventories::with('inventoryData.category','EmployeeInventories.inventoryData.category')->where('status','Active')->where('generated',null)->where('department',null)->get();
+            $employeeInventoriesDepartment = EmployeeInventories::with('inventoryData.category','EmployeeInventoriesDepartment.inventoryData.category')->where('status','Active')->where('generated',null)->where('department','!=',null)->get();
             $transactions = Transaction::orderBy('id','desc')->get();
             // dd($transactions); 
             return view('transactions',
@@ -315,6 +353,8 @@ class AssetController extends Controller
             'employees' => $employees,
             'transactions' => $transactions,
             'assetCodes' => $assetCodes,
+            'employeeInventoriesDepartment' => $employeeInventoriesDepartment,
+            'assetCodesDepartment' => $assetCodesDepartment,
             )
         );
     }
@@ -341,7 +381,14 @@ class AssetController extends Controller
     public function generateData (Request $request)
     {
         // dd($request->all());
-        $employeeInventories = EmployeeInventories::where('emp_code',$request->employee_codes)->where('status','Active')->where('generated',null)->get();
+        if($request->department_data != null)
+        {
+            $employeeInventories = EmployeeInventories::where('emp_code',$request->employee_codes)->where('status','Active')->where('department','!=',null)->where('generated',null)->get();
+        }
+        else
+        {
+            $employeeInventories = EmployeeInventories::where('emp_code',$request->employee_codes)->where('status','Active')->where('department','=',null)->where('generated',null)->get();
+        }
         // dd($employeeInventories);
 
         // $employeeInventories->generated = 1;
