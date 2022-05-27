@@ -102,10 +102,11 @@
                 <b>SERIAL NUMBER</b>
             </th>
             <th>
-                <b>CONDITION</b>
+              
+                <b>REMARKS</b>
             </th>
             <th>
-                <b>REMARKS</b>
+                <b>CONDITION</b>
             </th>
         </tr>
         @foreach($transaction->items as $inventory)
