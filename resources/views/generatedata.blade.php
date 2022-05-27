@@ -65,17 +65,9 @@
     var employees = {!! json_encode($employees->toArray()) !!};
     var assetCodes = {!! json_encode($assetCodes->toArray()) !!};
     var assetCodesDepartment = {!! json_encode($assetCodesDepartment->toArray()) !!};
-    // console.log(employees);
-   
     function generateEmployee(name)
     {
-      
-        console.log(name);
         var employee = employees.find(employee => employee.badgeno == name.emp_code);
-
-       
-        // console.log(inventories);
-        
         if(name.department != null)
         {
             var inventories = name.employee_inventories_department;
