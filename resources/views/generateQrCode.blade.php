@@ -12,7 +12,7 @@
                 <span id='qrGenerate'>{!! QrCode::size(250)->generate('http://203.177.143.61:8080/asset/public/getDataAccountability?emp_id='.$employee->badgeno); !!}</span> 
                 <br>
                 <span id='employeeID'></span><br>
-                <span class='text-center' >Renz Christian Cabato</span>
+                <span class='text-center' id='employeename'>{{$employee->name}}</span>
             </div>
         </div>
     </div>
