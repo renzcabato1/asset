@@ -13,7 +13,10 @@
                     <input name='idAccountability' type='hidden' id='idAccountability' required>
                     <input name='name' type='hidden' id='name' required>
                     <input name='asset_code' type='hidden' id='asset_code' required>
-                    <input name='idAccountability' type='hidden' id='idAccountability' required>
+                    <input name='position' type='hidden' id='position' required>
+                    <input name='department' type='hidden' id='department' required>
+                    <input name='emp_code' type='hidden' id='emp_code' required>
+                    <input name='email' type='hidden' id='email' required>
                     <label >Status</label>
                     <select name='status' id='status' class='form-control mb-2 mr-sm-2' required>
                         <option value=''></option>

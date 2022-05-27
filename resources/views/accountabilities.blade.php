@@ -36,7 +36,7 @@
                               <td>{{$accountability->inventoryData->model}}</td>
                               <td>{{$accountability->inventoryData->serial_number}}</td>
                               <td><small>{!! nl2br(e($accountability->inventoryData->description)) !!}</small></td>
-                              <td><a onclick="getData({{$accountability->id}})" data-toggle="modal" data-target="#return_unit"href="#" class="btn btn-icon btn-sm icon-left btn-primary" title='Return Unit'><i class="far fa-paper-plane"></i> Return</a></td>
+                              <td><a onclick="getData({{$accountability}})" data-toggle="modal" data-target="#return_unit"href="#" class="btn btn-icon btn-sm icon-left btn-primary" title='Return Unit'><i class="far fa-paper-plane"></i> Return</a></td>
                             </tr>
                             @endforeach
                           </tbody>
@@ -52,17 +52,24 @@
 <script type="text/javascript">
   function getData(accountabilityId)
   {
-    document.getElementById("idAccountability").value = accountabilityId;
+    // console.log(accountabilityId);
+    document.getElementById("idAccountability").value = accountabilityId.id;
     document.getElementById("status").value = "";
     document.getElementById("description").value = "";
+    document.getElementById("asset_code").value = accountabilityId.transactions.asset_code;
+    document.getElementById("emp_code").value = accountabilityId.transactions.emp_code;
+    document.getElementById("name").value = accountabilityId.transactions.name;
+    document.getElementById("position").value = accountabilityId.transactions.position;
+    document.getElementById("department").value = accountabilityId.transactions.department;
+    document.getElementById("email").value = accountabilityId.transactions.email;
   }
 
   function setHeight(fieldId)
-    {
+  {
 
-        document.getElementById(fieldId).style.height = document.getElementById(fieldId).scrollHeight+'px';
-        
-    }
+      document.getElementById(fieldId).style.height = document.getElementById(fieldId).scrollHeight+'px';
+      
+  }
     // setHeight('description');
  
 </script>

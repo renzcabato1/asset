@@ -8,7 +8,7 @@
             </button>
             </div>
             <div class="modal-body">
-                <form method='post' action='upload-pdf' onsubmit='show();'  enctype="multipart/form-data">
+                <form method='post' action='upload-pdf-return' onsubmit='show();'  enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class='row'>
                         <div class='col-sm-12'>
