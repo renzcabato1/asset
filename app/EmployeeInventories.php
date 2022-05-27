@@ -19,4 +19,8 @@ class EmployeeInventories extends Model
     {
         return $this->hasMany(EmployeeInventories::class,'emp_code','emp_code')->where('generated',null)->where('status',"Active")->where('department','!=',null);
     }
+    public function transactions()
+    {
+        return $this->hasOne(Transaction::class,'emp_code','emp_code');
+    }
 }

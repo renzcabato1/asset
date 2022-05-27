@@ -7,58 +7,49 @@
         <div class="container">
           <div class="page-error">
             <div class="page-inner">
-              <img alt="image"  src="{{asset('login_css/images/logo.png')}}" style='width:135px;'><br>
-              <h2 class='mt-2'>Accountabilities Update</h2>
+              <img alt="image"  src="{{asset('login_css/images/logo.png')}}" style='width:50px;'><br>
+              <h6 class='mt-2'>Accountabilities Update</h6>
               <div class="page-description">
                 {{-- Be right back. --}}
               </div>
             
             </div>
           </div>
-        </div>
-        <div class="row m-5">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header text-left">
-                    <h4>Name :  @foreach($filtered->all() as $filt)
-                        {{$filt->lastname}}, {{$filt->firstname}} {{$filt->middlename}} - {{$filt->badgeno}}
-                        @endforeach <Br>
-                     Department : {{$filt->department}}<br>
-                     Position : {{$filt->position}}</h4><br>
-                    </div>
-                    <div class="card-body">
-                      <div class="table-responsive">
-                        <table class="table table-hover" id="employees-table" style="width:100%;">
-                          <thead>
-                            <tr>
-                              <th>Code </th>
-                              <th>Category</th>
-                              <th>Brand</th>
-                              <th>Model</th>
-                              <th>Serial Number</th>
-                              <th>Description</th>
-                              <th>Status</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            @foreach($employeeInventories as $accountability)
-                            <tr>
-                              <td>OBN-{{$accountability->inventoryData->category->code}}-{{str_pad($accountability->inventoryData->id, 4, '0', STR_PAD_LEFT)}}</td>
-                              <td>{{$accountability->inventoryData->category->category_name}}</td>
-                              <td>{{$accountability->inventoryData->brand}}</td>
-                              <td>{{$accountability->inventoryData->model}}</td>
-                              <td>{{$accountability->inventoryData->serial_number}}</td>
-                              <td><small>{!! nl2br(e($accountability->inventoryData->description)) !!}</small></td>
-                              <td>{{$accountability->status}}</td>
-                            </tr>
-                            @endforeach
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                </div>
-            </div>
+     
+          <span style='font-size: 8px;'>Name :  {{$employeeInventories[0]->transactions->name}}<Br>
+            Department : {{$employeeInventories[0]->transactions->department}}<br>
+            Position : {{$employeeInventories[0]->transactions->position}}</span>
           </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover border border-dark " style=' font-size: 8px; '>
+                <thead>
+                  <tr class='border border-dark'>
+                    <th  class='border border-dark'>Code </th>
+                    <th class='border border-dark'>Category</th>
+                    <th class='border border-dark'>Brand</th>
+                    <th class='border border-dark'>Model</th>
+                    <th class='border border-dark'>Serial Number</th>
+                    <th class='border border-dark'>Description</th>
+                    <th class='border border-dark'>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($employeeInventories as $accountability)
+                  <tr class='border border-dark'>
+                    <td class='border border-dark'>OBN-{{$accountability->inventoryData->category->code}}-{{str_pad($accountability->inventoryData->id, 4, '0', STR_PAD_LEFT)}}</td>
+                    <td class='border border-dark'>{{$accountability->inventoryData->category->category_name}}</td>
+                    <td class='border border-dark'>{{$accountability->inventoryData->brand}}</td>
+                    <td class='border border-dark'>{{$accountability->inventoryData->model}}</td>
+                    <td class='border border-dark'>{{$accountability->inventoryData->serial_number}}</td>
+                    <td class='border border-dark'><small>{!! nl2br(e($accountability->inventoryData->description)) !!}</small></td>
+                    <td class='border border-dark'>{{$accountability->status}}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+          </div>
+        </div>
       </section>
 </div>
 @endsection

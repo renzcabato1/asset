@@ -11,6 +11,9 @@
                 <form method='post' action='return-item' onsubmit='show();'  enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input name='idAccountability' type='hidden' id='idAccountability' required>
+                    <input name='name' type='hidden' id='name' required>
+                    <input name='asset_code' type='hidden' id='asset_code' required>
+                    <input name='idAccountability' type='hidden' id='idAccountability' required>
                     <label >Status</label>
                     <select name='status' id='status' class='form-control mb-2 mr-sm-2' required>
                         <option value=''></option>

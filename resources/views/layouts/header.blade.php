@@ -79,6 +79,7 @@
     {
       float: right !important;
     }
+    
 
 </style>
 </head>
@@ -146,6 +147,9 @@
               </li>
               <li class="dropdown  @if($header == "Transactions") active @endif">
                 <a href="{{ url('/transactions') }}" class="nav-link" onclick='show();'><i data-feather="file-text"></i><span>Transactions</span></a>
+              </li> 
+              <li class="dropdown  @if($header == "Returns") active @endif">
+                <a href="{{ url('/returns') }}" class="nav-link" onclick='show();'><i data-feather="file-text"></i><span>Return Items</span></a>
               </li> 
               <li class="menu-header">Settings</li>
               <li class="dropdown @if($header == "Category") active @endif">

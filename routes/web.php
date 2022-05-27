@@ -47,6 +47,9 @@ Route::post('upload-pdf','AssetController@uploadSignedContract');
 //for Repair
 Route::get('for-repair','AssetController@for_repair');
 
+//Return
+Route::get('returns','AssetController@return_items');
+
 
 });
 

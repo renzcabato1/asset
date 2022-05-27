@@ -28,14 +28,8 @@
                             @foreach($employeeInventories as $accountability)
                             <tr>
                               <td>
-                                <?php
-                                $filtered = $employees->where('badgeno', $accountability->emp_code);
-                                // dd( $filtered->all());
-                                ?>
-                                @foreach($filtered->all() as $filt)
-                                {{$filt->lastname}}, {{$filt->firstname}} {{$filt->middlename}} - {{$accountability->emp_code}}
-                                @endforeach
-                                </td>
+                                {{$accountability->transactions->name}}
+                              </td>
                               <td>OBN-{{$accountability->inventoryData->category->code}}-{{str_pad($accountability->inventoryData->id, 4, '0', STR_PAD_LEFT)}}</td>
                               <td>{{$accountability->inventoryData->category->category_name}}</td>
                               <td>{{$accountability->inventoryData->brand}}</td>
