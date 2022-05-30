@@ -16,10 +16,40 @@
   <link rel="stylesheet" href="{{asset('assets/bundles/select2/dist/css/select2.min.css')}}"> 
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
   <!-- Custom style CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
-  
+  <script src="{{ asset('qrcode/dist/easy.qrcode.min.js') }}" type="text/javascript" charset="utf-8"></script>
+
   <style>
+    	#header{
+				text-align: left;
+				margin: 0;
+				line-height: 80px;
+				background-color: #007bff;
+				color: #fff;
+				padding-left: 20px;
+				font-size: 36px;
+			}
+			
+			#header a{color: #FFFF00;}
+			#header a:hover{color: #FF9933;}
+			#container {
+				width: 1030px;
+				margin: 10px auto;
+			}
+
+			.imgblock {
+				margin: 10px 0;
+				text-align: center;
+				float: left;
+				min-height: 420px;
+			}
+
+			
+
+		
     .zoom:hover {
       transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     }
@@ -203,7 +233,7 @@
   <script src="{{ asset('assets/bundles/datatables/datatables.min.js') }}"></script>
   {{-- <script src="{{ asset('assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js.js') }}"></script> --}}
   <script src="{{ asset('assets/bundles/jquery-ui/jquery-ui.min.js') }}"></script>
-
+  
   <script src="{{ asset('assets/bundles/sweetalert/sweetalert.min.js') }}"></script>
   <!-- Page Specific JS File -->
   <script src="{{ asset('assets/js/page/sweetalert.js') }}"></script>
@@ -211,7 +241,7 @@
   <script src="{{ asset('assets/js/page/datatables.js') }}"></script>
   
 
-  <script>
+  <script> 
     $(".deactivate-category").click(function () {
       var id = $(this).parent("td").data('id');
       swal({
