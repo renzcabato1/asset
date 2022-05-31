@@ -90,6 +90,22 @@
         </div>
     </section>
 </div>
-
+<script>
+    $(".custom-switch-input").click(function () {
+      $('#department').empty();
+      if($(this).is(':checked'))
+        {
+          var data = "<label>Department</label><select id='department_select' class='form-control select3' name='department' style='width:100%' required >";
+             data += "<option value=''></option>";
+             data += "@foreach($departments as $department)";
+             data += "<option value='{{$department->code}}'>{{$department->descs}} - {{$department->code}}</option>";
+             data += "@endforeach";
+             data += "</select>";
+             $('#department').append(data);
+             $(".select3").select2();
+        }
+     
+     });
+</script>
 @endsection
 
