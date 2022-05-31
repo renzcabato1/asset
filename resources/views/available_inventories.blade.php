@@ -21,7 +21,7 @@
                         </div>
                         <div class="card-body">
                           <label class="mt-2">
-                            <input type="checkbox" onchange='department(this)' name="custom-switch-checkbox" class="custom-switch-input">
+                            <input type="checkbox"  name="custom-switch-checkbox" class="custom-switch-input">
                             <span class="custom-switch-indicator"></span>
                             <span class="custom-switch-description">Department</span>
                           </label><br>
@@ -70,6 +70,7 @@
                             </tr>
                           </thead>
                           <tbody>
+
                             @foreach($inventories as $inventory)
                               <tr>
                                 <td>{{$inventory->category->code}}-{{str_pad($inventory->equipment_code, 4, '0', STR_PAD_LEFT)}}</td>
@@ -89,25 +90,6 @@
         </div>
     </section>
 </div>
-<script>
-  function department(data)
-  {
-      if(data.checked == true)
-      {
-         var data = "<label>Department</label><select id='department_select' class='form-control select3' name='department' style='width:100%' required >";
-             data += "<option value=''></option>";
-             data += "@foreach($departments as $department)";
-             data += "<option value='{{$department->code}}'>{{$department->descs}} - {{$department->code}}</option>";
-             data += "@endforeach";
-             data += "</select>";
-             $('#department').append(data);
-             $(".select3").select2();
-      }
-      else
-      {
-         $('#department').empty();
-      }
-  }
-</script>
+
 @endsection
 
