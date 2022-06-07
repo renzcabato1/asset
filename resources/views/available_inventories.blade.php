@@ -21,7 +21,7 @@
                         </div>
                         <div class="card-body">
                           <label class="mt-2">
-                            <input type="checkbox"  name="custom-switch-checkbox" class="custom-switch-input">
+                            <input type="checkbox" id='accept'  name="custom-switch-checkbox" class="custom-switch-input" onclick="change_department();">
                             <span class="custom-switch-indicator"></span>
                             <span class="custom-switch-description">Department</span>
                           </label><br>
@@ -90,23 +90,41 @@
         </div>
     </section>
 </div>
-<script src="{{ asset('assets/bundles/jquery-ui/jquery-ui.min.js') }}"></script>
+
 <script>
-    $(".custom-switch-input").click(function () {
-      $('#department').empty();
-      if($(this).is(':checked'))
-        {
-          var data = "<label>Department</label><select id='department_select' class='form-control select3' name='department' style='width:100%' required >";
+  
+      function change_department()
+      {
+      
+     
+          // var element = document.getElementById("depart");
+          // element.remove();
+
+          var cb = document.querySelector('#accept');
+          console.log(cb.checked); // false
+          if(cb.checked == true)
+          {
+          
+          var data = "<div id='depart'><label>Department</label><select id='department_select' class='form-control select3' name='department' style='width:100%' required >";
              data += "<option value=''></option>";
              data += "@foreach($departments as $department)";
              data += "<option value='{{$department->code}}'>{{$department->descs}} - {{$department->code}}</option>";
              data += "@endforeach";
-             data += "</select>";
+             data += "</select></div>";
              $('#department').append(data);
              $(".select3").select2();
-        }
+
+               
+          }
+          else
+          {
+            var element = document.getElementById("depart");
+            element.remove();
+            
+          }
+        
      
-     });
+     }
 </script>
 @endsection
 
