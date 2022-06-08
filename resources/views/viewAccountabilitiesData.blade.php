@@ -16,16 +16,16 @@
             </div>
           </div>
      
-          <span style='font-size: 8px;'>Name :  {{$employeeInventories[0]->transactions->name}}<Br>
-            Department : {{$employeeInventories[0]->transactions->department}}<br>
-            Position : {{$employeeInventories[0]->transactions->position}}</span>
+          <span style='font-size: 8px;'>Name :  {{$employee->lastname}}, {{$employee->firstname}}<Br>
+            Department : {{$employee->department}} <br>
+            Position :{{$employee->position}} </span>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-hover border border-dark " style=' font-size: 8px; '>
                 <thead>
                   <tr class='border border-dark'>
-                    <th  class='border border-dark'>Code </th>
+                    <th  class='border border-dark'>Code</th>
                     <th class='border border-dark'>Category</th>
                     <th class='border border-dark'>Brand</th>
                     <th class='border border-dark'>Model</th>

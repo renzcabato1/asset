@@ -79,7 +79,7 @@
             
             count = count +1;
             var tableTd = "<tr>";
-                tableTd += "<td>OBN-"+employeeInventories[i].inventory_data.category.code+"-"+pad("00000",employeeInventories[i].inventory_data.id,true)+"</td>";
+                tableTd += "<td>OBN-"+employeeInventories[i].inventory_data.category.code+"-"+pad("00000",employeeInventories[i].inventory_data.equipment_code,true)+"</td>";
                 tableTd += "<td>"+employeeInventories[i].inventory_data.category.category_name+"</td>";
                 tableTd += "<td>"+employeeInventories[i].inventory_data.brand+"</td>";
                 tableTd += "<td>"+employeeInventories[i].inventory_data.model+"</td>";

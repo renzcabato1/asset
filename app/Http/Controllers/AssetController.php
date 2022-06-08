@@ -278,7 +278,7 @@ class AssetController extends Controller
     public function accountabilities()
     {
      
-        $employeeInventories = EmployeeInventories::with('inventoryData.category','transactions')->where('status','Active')->get();
+        $employeeInventories = EmployeeInventories::with('inventoryData.category','transactions')->whereHas('transactions')->where('status','Active')->get();
         return view('accountabilities',
             array(
             'subheader' => '',
@@ -422,14 +422,53 @@ class AssetController extends Controller
     }
     public function viewAccountabilitiesData(Request $request)
     {
-       
+        $client = new Client([
+            'base_uri' => 'http://203.177.143.61:8080/HRAPI/public/',
+            'cookies' => true,
+            ]);
+
+        $data = $client->request('POST', 'oauth/token', [
+            'json' => [
+                'username' => 'rccabato@premiummegastructures.com',
+                'password' => 'P@ssw0rd',
+                'grant_type' => 'password',
+                'client_id' => '2',
+                'client_secret' => 'rVI1kVh07yb4TBw8JiY8J32rmDniEQNQayf3sEyO',
+                ]
+        ]);
+
+        $response = json_decode((string) $data->getBody());
+        $key = $response->access_token;
+
+        $dataEmployee = $client->request('get', 'employees', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $key,
+                    'Accept' => 'application/json'
+                ],
+            ]);
+
+            
+        $dataDepartments = $client->request('get', 'departments', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $key,
+                'Accept' => 'application/json'
+            ],
+        ]);
+        $responseEmployee = json_decode((string) $dataEmployee->getBody());
+        $responseDepartment = json_decode((string) $dataDepartments->getBody());
+        $employees = $responseEmployee->data;
+        $employeesCollect = collect($employees);
+        // dd($employeesCollect);
+        $employee = $employeesCollect->where('badgeno',$request->emp_id)->first();
+        // dd($employee);
         $employeeInventories = EmployeeInventories::with('inventoryData.category','transactions')->where('emp_code',$request->emp_id)->get();
         $categories = Category::where('status','Active')->get();
 
-             
+        // dd($employees);
         return view('viewAccountabilitiesData',
         array(
             'employeeInventories' => $employeeInventories,
+            'employee' => $employee,
             )
         );
 
