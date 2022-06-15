@@ -66,7 +66,7 @@
                
             </td>
             <td width='30%'>
-                DATE :   {{date('M d, Y',strtotime($transaction->created_at))}}
+                DATE :   {{date('F d, Y',strtotime($transaction->created_at))}}
             </td>
         </tr>
         <tr   class='content'>
