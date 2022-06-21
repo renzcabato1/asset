@@ -118,16 +118,22 @@ class AssetController extends Controller
     public function newAssets(Request $request)
     {
         $def = "N/A";
+        if(($request->category == 2) || ($request->category == 4))
+        {
 
-        $this->validate($request, [
-            'category' => 'required',
-            'brand' => 'required',
-            'model' => 'required',
-            'serial_number' => 'required|unique:inventories,serial_number,'.$def.',serial_number',
-            'description' => 'required',
-            // 'date_purchased' => 'required',
-        ]);
+        }
+        else
+        {
 
+            $this->validate($request, [
+                'category' => 'required',
+                'brand' => 'required',
+                'model' => 'required',
+                'serial_number' => 'required|unique:inventories,serial_number,'.$def.',serial_number',
+                'description' => 'required',
+                // 'date_purchased' => 'required',
+            ]);
+        }
         $oldest_data = Inventory::where('category_id',$request->category)->orderBy('id','desc')->first();
         $inventory_code = 0;
         if($oldest_data == null)
