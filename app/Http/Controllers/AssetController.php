@@ -28,7 +28,7 @@ class AssetController extends Controller
         $categories = Category::where('status','=',"Active")->get();
 
         $client = new Client([
-            'base_uri' => 'http://203.177.143.61:8080/HRAPI/public/',
+            'base_uri' => 'http://192.168.50.119:4200/HRAPI/public/',
             'cookies' => true,
             ]);
 
@@ -67,7 +67,7 @@ class AssetController extends Controller
     {
         $inventories = Inventory::with('category')->where('status','Active')->get();
         $client = new Client([
-            'base_uri' => 'http://203.177.143.61:8080/HRAPI/public/',
+            'base_uri' => 'http://192.168.50.119:4200/HRAPI/public/',
             'cookies' => true,
             ]);
 
@@ -306,7 +306,7 @@ class AssetController extends Controller
     {
 
         $client = new Client([
-            'base_uri' => 'http://203.177.143.61:8080/HRAPI/public/',
+            'base_uri' => 'http://192.168.50.119:4200/HRAPI/public/',
             'cookies' => true,
             ]);
 
@@ -429,7 +429,7 @@ class AssetController extends Controller
     public function viewAccountabilitiesData(Request $request)
     {
         $client = new Client([
-            'base_uri' => 'http://203.177.143.61:8080/HRAPI/public/',
+            'base_uri' => 'http://192.168.50.119:4200/HRAPI/public/',
             'cookies' => true,
             ]);
 

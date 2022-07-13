@@ -30,7 +30,7 @@ class RequestController extends Controller
     {
         $categories = Category::where('status','Active')->get();
         $client = new Client([
-            'base_uri' => 'http://203.177.143.61:8080/HRAPI/public/',
+            'base_uri' => 'http://192.168.50.119:4200/HRAPI/public/',
             'cookies' => true,
             ]);
 
@@ -72,7 +72,7 @@ class RequestController extends Controller
     {
         //employee API
         $client = new Client([
-            'base_uri' => 'http://203.177.143.61:8080/HRAPI/public/',
+            'base_uri' => 'http://192.168.50.119:4200/HRAPI/public/',
             'cookies' => true,
             ]);
 
