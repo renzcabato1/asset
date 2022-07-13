@@ -76,7 +76,8 @@
         $('#dataAssets').empty();
         var inventories = name.return_inventories;
         for (var i = 0; i < inventories.length; i++) {
-
+            if(inventories[i].date_generated == null)
+            {
         var dataAssets = "<tr class='border border-dark'><td class='border border-dark'>"+inventories[i].inventory_data.category.category_name+"</td>";
             dataAssets += "<td class='border border-dark'>OBN-"+inventories[i].inventory_data.category.code+"-"+pad("0000",inventories[i].inventory_data.equipment_code,true)+"</td>";    
             dataAssets += "<td class='border border-dark'>"+inventories[i].inventory_data.brand+"</td>";    
@@ -86,6 +87,7 @@
             dataAssets += "<td class='border border-dark'>"+(inventories[i].employee_inventories.returned_status)+"</td>";    
             dataAssets += "</tr>";    
             $('#dataAssets').append(dataAssets);
+        }
         }
      
     }
