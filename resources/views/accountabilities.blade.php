@@ -30,7 +30,7 @@
                               <td>
                                 {{$accountability->transactions->name}}
                               </td>
-                              <td>OBN-{{$accountability->inventoryData->category->code}}-{{str_pad($accountability->inventoryData->id, 4, '0', STR_PAD_LEFT)}}</td>
+                              <td>OBN-{{$accountability->inventoryData->category->code}}-{{str_pad($accountability->inventoryData->equipment_code, 4, '0', STR_PAD_LEFT)}}</td>
                               <td>{{$accountability->inventoryData->category->category_name}}</td>
                               <td>{{$accountability->inventoryData->brand}}</td>
                               <td>{{$accountability->inventoryData->model}}</td>
