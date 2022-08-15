@@ -160,15 +160,15 @@
               <li class="dropdown  @if($header == "Dashboard") active @endif">
                 <a href="{{ url('/') }}" class="nav-link" onclick='show();'><i data-feather="monitor"></i><span>Dashboard</span></a>
               </li>
-              <li class="dropdown  @if($header == "Requests") active @endif">
+              {{-- <li class="dropdown  @if($header == "Requests") active @endif">
                 <a href="{{ url('/requests') }}" class="nav-link" onclick='show();'><i data-feather="file-plus"></i><span>Requests</span></a>
-              </li>
+              </li> --}}
               <li class="dropdown  @if($header == "Available Assets") active @endif">
                 <a href="{{ url('/available-assets') }}" class="nav-link" onclick='show();'><i data-feather="check-square"></i><span>Available Assets</span></a>
               </li>
-              <li class="dropdown  @if($header == "For Repairs") active @endif">
+              {{-- <li class="dropdown  @if($header == "For Repairs") active @endif">
                 <a href="{{ url('/for-repair') }}" class="nav-link" onclick='show();'><i data-feather="settings"></i><span>For Repair</span></a>
-              </li>
+              </li> --}}
               {{-- <li class="dropdown  @if($header == "Deployed Assets") active @endif">
                 <a href="{{ url('/deployed-assets') }}" class="nav-link" onclick='show();'><i data-feather="share-2"></i><span>Deployed Assets</span></a>
               </li> --}}
