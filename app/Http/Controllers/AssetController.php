@@ -235,14 +235,7 @@ class AssetController extends Controller
             $employeeInventory->inventory_id = $asset;
             $employeeInventory->emp_code = $request->employee;
             $employeeInventory->status = "Active";
-            if($request->department != null)
-            {
-
-            }
-            else
-            {
-
-            }
+            $employeeInventory->department = $request->department;
             $employeeInventory->date_assigned = date('Y-m-d');
             $employeeInventory->assigned_by = auth()->user()->id;
             $employeeInventory->save();
@@ -397,10 +390,6 @@ class AssetController extends Controller
         {
             $employeeInventories = EmployeeInventories::where('emp_code',$request->employee_codes)->where('status','Active')->where('department','=',null)->where('generated',null)->get();
         }
-        // dd($employeeInventories);
-
-        // $employeeInventories->generated = 1;
-        // $employeeInventories->update();
 
         $transaction = new Transaction;
         $transaction->emp_code = $request->employee_codes;
