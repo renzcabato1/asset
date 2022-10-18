@@ -207,6 +207,16 @@ class AssetController extends Controller
                     $newCode->encode_by = auth()->user()->id;
                     $newCode->save();
                 }
+                else
+                {
+                    $code =  $asset_codes->code + 1;
+                    $newCode = new AssetCode;
+                    $newCode->code = $code;
+                    $newCode->employee_id = $request->employee;
+                    $newCode->department = $request->department;
+                    $newCode->encode_by = auth()->user()->id;
+                    $newCode->save();
+                }
             }
             else
             {
