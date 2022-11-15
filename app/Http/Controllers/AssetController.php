@@ -263,7 +263,7 @@ class AssetController extends Controller
          'transaction' =>$transaction
             
         ));
-        return $pdf->stream('accountability.pdf');
+        return $pdf->download('accountability.pdf');
     }
     public function returnItemPdf(Request $request,$id)
     {
@@ -273,7 +273,7 @@ class AssetController extends Controller
          'transaction' =>$transaction
             
         ));
-        return $pdf->stream('returnItems.pdf');
+        return $pdf->down('returnItems.pdf');
     }
     public function for_repair()
     {
